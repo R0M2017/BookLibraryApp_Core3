@@ -57,6 +57,9 @@ namespace BookLibraryApp.Migrations
                     b.Property<int>("NumberPages")
                         .HasColumnType("INTEGER");
 
+                    b.Property<decimal>("Price")
+                        .HasColumnType("TEXT");
+
                     b.Property<DateTime>("PublishedDate")
                         .HasColumnType("TEXT");
 

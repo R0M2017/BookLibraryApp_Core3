@@ -36,6 +36,7 @@ namespace BookLibraryApp.Migrations
                     Genre = table.Column<string>(nullable: true),
                     PublishedDate = table.Column<DateTime>(nullable: false),
                     Language = table.Column<string>(nullable: true),
+                    Price = table.Column<decimal>(nullable: false),
                     AuthorId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>

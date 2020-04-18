@@ -15,7 +15,7 @@ namespace BookLibraryApp.Models
         public string Genre { get; set; }
         public DateTime PublishedDate { get; set; }
         public string Language { get; set; }
-
+        public decimal Price { get; set; }
         public int AuthorId { get; set; }
         public Author Author { get; set; }
     }
