@@ -11,6 +11,7 @@ namespace BookLibraryApp.Controllers
 {
     public class BooksController : Controller
     {
+        // System.InvalidOperationException: Unable to resolve service for type 'BookLibraryApp.booklibrarydatabase.BookLibraryContext' while attempting to activate 'BookLibraryApp.Controllers.BooksController'.
         private readonly BookLibraryContext _context;
 
         public BooksController(BookLibraryContext context)
@@ -42,6 +43,7 @@ namespace BookLibraryApp.Controllers
             return View(books);
         }
 
+        /*
         // GET: Books/Create
         public IActionResult Create()
         {
@@ -148,5 +150,6 @@ namespace BookLibraryApp.Controllers
         {
             return _context.Books.Any(e => e.Isbn == id);
         }
+        */
     }
 }
