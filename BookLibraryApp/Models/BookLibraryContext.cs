@@ -6,9 +6,9 @@ namespace BookLibraryApp.booklibrarydatabase
 {
     public partial class BookLibraryContext : DbContext
     {
-        public BookLibraryContext()
+        /*public BookLibraryContext()
         {
-        }
+        }*/
 
         public BookLibraryContext(DbContextOptions<BookLibraryContext> options)
             : base(options)

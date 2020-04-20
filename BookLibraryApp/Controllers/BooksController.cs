@@ -14,10 +14,7 @@ namespace BookLibraryApp.Controllers
         // System.InvalidOperationException: Unable to resolve service for type 'BookLibraryApp.booklibrarydatabase.BookLibraryContext' while attempting to activate 'BookLibraryApp.Controllers.BooksController'.
         private readonly BookLibraryContext _context;
 
-        public BooksController(BookLibraryContext context)
-        {
-            _context = context;
-        }
+        public BooksController(BookLibraryContext context) => _context = context;
 
         // GET: Books
         public async Task<IActionResult> Index()
