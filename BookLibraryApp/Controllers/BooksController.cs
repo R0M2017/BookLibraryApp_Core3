@@ -3,150 +3,152 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using BookLibraryApp.booklibrarydatabase;
+using BookLibraryApp.Models;
 
 namespace BookLibraryApp.Controllers
 {
     public class BooksController : Controller
     {
-        // System.InvalidOperationException: Unable to resolve service for type 'BookLibraryApp.booklibrarydatabase.BookLibraryContext' while attempting to activate 'BookLibraryApp.Controllers.BooksController'.
-        private readonly BookLibraryContext _context;
 
-        public BooksController(BookLibraryContext context) => _context = context;
+        private IRepository repository;
+        public BooksController(IRepository repo) => repository = repo;
 
-        // GET: Books
-        public async Task<IActionResult> Index()
-        {
-            return View(await _context.Books.ToListAsync());
-        }
-
-        // GET: Books/Details/5
-        public async Task<IActionResult> Details(string id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var books = await _context.Books
-                .FirstOrDefaultAsync(m => m.Isbn == id);
-            if (books == null)
-            {
-                return NotFound();
-            }
-
-            return View(books);
-        }
+        public IActionResult Index() => View(repository.Books);
 
         /*
-        // GET: Books/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
+    // GET: Books
+     public async Task<IActionResult> Index()
+     {
+        // return View(await _context.Books.ToListAsync());
+        // return View(await _context.Books.FirstAsync());
+     }
 
-        // POST: Books/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Isbn,BookTitle,BookAuthor,YearOfPublication,Publisher,ImageUrlS,ImageUrlM,ImageUrlL")] Books books)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(books);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(books);
-        }
+     // GET: Books/Details/5
+     public async Task<IActionResult> Details(string id)
+     {
+         if (id == null)
+         {
+             return NotFound();
+         }
 
-        // GET: Books/Edit/5
-        public async Task<IActionResult> Edit(string id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+         var books = await _context.Books
+             .FirstOrDefaultAsync(m => m.Isbn == id);
+         if (books == null)
+         {
+             return NotFound();
+         }
 
-            var books = await _context.Books.FindAsync(id);
-            if (books == null)
-            {
-                return NotFound();
-            }
-            return View(books);
-        }
+         return View(books);
+     }
+     */
+        /*
+         // GET: Books/Create
+         public IActionResult Create()
+         {
+             return View();
+         }
 
-        // POST: Books/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("Isbn,BookTitle,BookAuthor,YearOfPublication,Publisher,ImageUrlS,ImageUrlM,ImageUrlL")] Books books)
-        {
-            if (id != books.Isbn)
-            {
-                return NotFound();
-            }
+         // POST: Books/Create
+         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+         [HttpPost]
+         [ValidateAntiForgeryToken]
+         public async Task<IActionResult> Create([Bind("Isbn,BookTitle,BookAuthor,YearOfPublication,Publisher,ImageUrlS,ImageUrlM,ImageUrlL")] Books books)
+         {
+             if (ModelState.IsValid)
+             {
+                 _context.Add(books);
+                 await _context.SaveChangesAsync();
+                 return RedirectToAction(nameof(Index));
+             }
+             return View(books);
+         }
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(books);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!BooksExists(books.Isbn))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(books);
-        }
+         // GET: Books/Edit/5
+         public async Task<IActionResult> Edit(string id)
+         {
+             if (id == null)
+             {
+                 return NotFound();
+             }
 
-        // GET: Books/Delete/5
-        public async Task<IActionResult> Delete(string id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+             var books = await _context.Books.FindAsync(id);
+             if (books == null)
+             {
+                 return NotFound();
+             }
+             return View(books);
+         }
 
-            var books = await _context.Books
-                .FirstOrDefaultAsync(m => m.Isbn == id);
-            if (books == null)
-            {
-                return NotFound();
-            }
+         // POST: Books/Edit/5
+         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+         [HttpPost]
+         [ValidateAntiForgeryToken]
+         public async Task<IActionResult> Edit(string id, [Bind("Isbn,BookTitle,BookAuthor,YearOfPublication,Publisher,ImageUrlS,ImageUrlM,ImageUrlL")] Books books)
+         {
+             if (id != books.Isbn)
+             {
+                 return NotFound();
+             }
 
-            return View(books);
-        }
+             if (ModelState.IsValid)
+             {
+                 try
+                 {
+                     _context.Update(books);
+                     await _context.SaveChangesAsync();
+                 }
+                 catch (DbUpdateConcurrencyException)
+                 {
+                     if (!BooksExists(books.Isbn))
+                     {
+                         return NotFound();
+                     }
+                     else
+                     {
+                         throw;
+                     }
+                 }
+                 return RedirectToAction(nameof(Index));
+             }
+             return View(books);
+         }
 
-        // POST: Books/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
-        {
-            var books = await _context.Books.FindAsync(id);
-            _context.Books.Remove(books);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
+         // GET: Books/Delete/5
+         public async Task<IActionResult> Delete(string id)
+         {
+             if (id == null)
+             {
+                 return NotFound();
+             }
 
-        private bool BooksExists(string id)
-        {
-            return _context.Books.Any(e => e.Isbn == id);
-        }
-        */
+             var books = await _context.Books
+                 .FirstOrDefaultAsync(m => m.Isbn == id);
+             if (books == null)
+             {
+                 return NotFound();
+             }
+
+             return View(books);
+         }
+
+         // POST: Books/Delete/5
+         [HttpPost, ActionName("Delete")]
+         [ValidateAntiForgeryToken]
+         public async Task<IActionResult> DeleteConfirmed(string id)
+         {
+             var books = await _context.Books.FindAsync(id);
+             _context.Books.Remove(books);
+             await _context.SaveChangesAsync();
+             return RedirectToAction(nameof(Index));
+         }
+
+         private bool BooksExists(string id)
+         {
+             return _context.Books.Any(e => e.Isbn == id);
+         }*/
+
     }
 }

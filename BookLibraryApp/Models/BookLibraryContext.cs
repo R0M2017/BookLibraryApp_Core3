@@ -2,13 +2,13 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace BookLibraryApp.booklibrarydatabase
+namespace BookLibraryApp.Models
 {
     public partial class BookLibraryContext : DbContext
     {
-        /*public BookLibraryContext()
+        public BookLibraryContext()
         {
-        }*/
+        }
 
         public BookLibraryContext(DbContextOptions<BookLibraryContext> options)
             : base(options)

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using BookLibraryApp.booklibrarydatabase;
+using BookLibraryApp.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -24,12 +24,10 @@ namespace BookLibraryApp
         {
             services.AddControllersWithViews();
             services.AddRazorPages();
-            /*string conString = Configuration["ConfigurationStrings:DefaultConnection"];
-            services.AddDbContext<BookLibraryContext>(options => options.UseMySQL(conString));*/
-            // services.AddDbContext<BookLibraryContext>(options => options.UseMySQL("Server=localhost;Database=booklibraryDatabase"));
-            services.AddDbContextPool<BookLibraryContext>(options => options
-                .UseMySql("Server=localhost;Database=booklibrarydatabase;User=root;Password=LOTOS123l;", options => options
-                    .ServerVersion(new Version(8, 0, 19), ServerType.MySql)));
+            services.AddTransient<IRepository, BookRepository>();
+            services.AddDbContext<BookLibraryContext>(options => options
+                .UseMySql("server=localhost;port=3306;user=root;password=LOTOS123l;database=booklibrarydatabase;", mySqlOptions => mySqlOptions
+                    .ServerVersion("8.0.19-mysql")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BookLibraryApp.booklibrarydatabase.Books>
+﻿@model IEnumerable<Books>
 
 @{
     ViewData["Title"] = "Index";
@@ -7,66 +7,54 @@
 
 <h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.BookTitle)
+                Title
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.BookAuthor)
+                Author
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.YearOfPublication)
+                Year of Publication
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Publisher)
+                Publisher
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ImageUrlS)
+                Image
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ImageUrlM)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ImageUrlL)
-            </th>
-            <th></th>
         </tr>
     </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.BookTitle)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BookAuthor)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.YearOfPublication)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Publisher)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImageUrlS)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImageUrlM)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImageUrlL)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Isbn">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Isbn">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Isbn">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
+    @if (Model.Count() == 0)
+    {
+
+    }
+    else
+    {
+        <tbody>
+
+            @foreach (Books b in Model)
+            {
+                <tr>
+                    <td>
+                        @b.BookTitle
+                    </td>
+                    <td>
+                        @b.BookAuthor
+                    </td>
+                    <td>
+                        @b.YearOfPublication
+                    </td>
+                    <td>
+                        @b.Publisher
+                    </td>
+                    <td>
+                        <img src="@b.ImageUrlM" />
+                    </td>
+                </tr>
+            }
+        </tbody>
+    }
 </table>
