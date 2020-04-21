@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BookLibraryApp.Models.Pages;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,10 +15,11 @@ namespace BookLibraryApp.Models
 
         public IEnumerable<Books> Books => _context.Books.ToArray();
 
-        public void AddBook(Books book)
+        public PagedList<Books> GetBooks(QueryOptions options)
         {
-            _context.Books.Add(book);
-            _context.SaveChanges();
+            return new PagedList<Books>(_context.Books, options);
         }
+
+        // public Books GetBooks(string isbn) => _context.Books.Include(b => b.YearOfPublication).First(b => b.Isbn == isbn);
     }
 }

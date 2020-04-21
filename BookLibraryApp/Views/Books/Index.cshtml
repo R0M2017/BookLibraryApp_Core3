@@ -7,42 +7,57 @@
 
 <h1>Books</h1>
 <br />
+<div class="container-fluid">
+    <div class="row p-2">
+        <div class="col-2">
+            <a asp-controller="Home" asp-action="Index">Home</a>
+        </div>
+    </div>
+</div>
+<div class="text-center">
+    @Html.Partial("Pages", Model)
+</div>
 <hr />
 <br />
-@if (Model.Count() == 0)
-{
-
-}
-else
-{
-    <div class="row">
-        <br />
-        @foreach (Books b in Model)
-        {
+<div>
+    @if (Model.Count() == 0)
+    {
+        <div class="row placeholder justify-content-center">
+            <div class="col text-center p-2">No Books</div>
+        </div>
+    }
+    else
+    {
+        <div class="row justify-content-center">
             <br />
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" 
-                     srcset="@b.ImageUrlS 200w, 
-                     @b.ImageUrlM 400w, 
+            @foreach (Books b in Model)
+            {
+                <br />
+                <div class="card m-2" style="width: 18rem;">
+                    <img class="card-img-top bg-dark"
+                         srcset="@b.ImageUrlS 200w,
+                     @b.ImageUrlM 400w,
                      @b.ImageUrlL 600w"
-                     sizes="(max-width: 600px) 200px, 400px, 600px"
-                     src="@b.ImageUrlL" alt="Book Image">
-                <div class="card-body">
-                    <h5 class="card-title"><b>Author: </b>@b.BookAuthor</h5>
-                    <p class="card-text"><b>Title: </b>@b.BookTitle</p>
+                         sizes="(max-width: 600px) 200px, 400px, 600px"
+                         src="@b.ImageUrlL" alt="Book Image"
+                         onerror="this.src = '~/img/NoPicture.jpg';">
+                    <div class="card-body">
+                        <h5 class="card-title"><b>Author: </b>@b.BookAuthor</h5>
+                        <p class="card-text"><b>Title: </b>@b.BookTitle</p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><b>Publisher</b>@b.Publisher</li>
+                        <li class="list-group-item"><b>Year Published: </b>@b.YearOfPublication</li>
+                        <li class="list-group-item"><b>ISBN: </b>@b.Isbn</li>
+                    </ul>
+                    <!--       <div class="card-body">
+                               <a href="#" class="card-link">Card link</a>
+                               <a href="#" class="card-link">Another link</a>
+                           </div>
+                       -->
                 </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><b>Publisher</b>@b.Publisher</li>
-                    <li class="list-group-item"><b>Year Published: </b>@b.YearOfPublication</li>
-                    <li class="list-group-item"><b>ISBN: </b>@b.Isbn</li>
-                </ul>
-                <!--       <div class="card-body">
-                           <a href="#" class="card-link">Card link</a>
-                           <a href="#" class="card-link">Another link</a>
-                       </div>
-                   -->
-            </div>
-            <br />
-        }
-    </div>
-}
+                <br />
+            }
+        </div>
+    }
+</div>

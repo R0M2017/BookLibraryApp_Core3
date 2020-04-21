@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BookLibraryApp.Models;
+using BookLibraryApp.Models.Pages;
 
 namespace BookLibraryApp.Controllers
 {
@@ -14,7 +15,10 @@ namespace BookLibraryApp.Controllers
         private IRepository repository;
         public BooksController(IRepository repo) => repository = repo;
 
-        public IActionResult Index() => View(repository.Books);
+        public IActionResult Index(QueryOptions options)
+        {
+            return View(repository.GetBooks(options));
+        }
 
         /*
     // GET: Books

@@ -1,0 +1,10 @@
+﻿
+.placeholder {
+    visibility: collapse;
+    display: none;
+}
+
+.placeholder:only-child {
+    visibility: visible;
+    display: flex;
+}
