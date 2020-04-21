@@ -23,8 +23,7 @@
             i <= Model.TotalPages; i++)
         {
             <button name="options.currentPage" value="@i" type="submit"
-                    class="btn btn-outline-primary
-@(Model.CurrentPage == i ? "active" : "")">
+                    class="btn btn-outline-primary @(Model.CurrentPage == i ? "active" : "")">
                 @i
             </button>
         }

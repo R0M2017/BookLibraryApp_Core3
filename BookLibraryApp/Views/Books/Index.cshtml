@@ -15,14 +15,14 @@
     </div>
 </div>
 <div class="text-center">
-    @Html.Partial("Pages", Model)
     @{
-        ViewBag.searches = new string[] { "BookTitle", "BookAuthor" };
+        ViewBag.searches = new string[] { "BookTitle", "BookAuthor", "Publisher" };
         ViewBag.sorts = new string[] { "BookTitle", "BookAuthor",
             "Publisher", "YearOfPublication"};
     }
     @Html.Partial("PageOptions", Model)
 </div>
+<br />
 <hr />
 <br />
 <div>
@@ -67,3 +67,10 @@
         </div>
     }
 </div>
+<br />
+<hr />
+<br />
+<div class="text-center">
+    @Html.Partial("Pages", Model)
+</div>
+<br />

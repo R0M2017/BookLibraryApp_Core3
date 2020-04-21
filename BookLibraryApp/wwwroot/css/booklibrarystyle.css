@@ -8,3 +8,7 @@
     visibility: visible;
     display: flex;
 }
+
+.card-img-top {
+    content: "No Image"
+}
