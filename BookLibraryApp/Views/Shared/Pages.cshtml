@@ -34,7 +34,7 @@
         Next
     </button>
     <select name="options.pageSize" class="form-control ml-1 mr-1">
-        @foreach (int val in new int[] { 16, 32, 64, 160 })
+        @foreach (int val in new int[] { 18, 36, 72, 180 })
         {
             <option value="@val" selected="@(Model.PageSize == val)">@val</option>
         }

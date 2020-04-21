@@ -16,6 +16,12 @@
 </div>
 <div class="text-center">
     @Html.Partial("Pages", Model)
+    @{
+        ViewBag.searches = new string[] { "BookTitle", "BookAuthor" };
+        ViewBag.sorts = new string[] { "BookTitle", "BookAuthor",
+            "Publisher", "YearOfPublication"};
+    }
+    @Html.Partial("PageOptions", Model)
 </div>
 <hr />
 <br />
@@ -33,28 +39,28 @@
             @foreach (Books b in Model)
             {
                 <br />
-                <div class="card m-2" style="width: 18rem;">
+                <div class="card m-2" style="width: 16rem;">
                     <img class="card-img-top bg-dark"
                          srcset="@b.ImageUrlS 200w,
-                     @b.ImageUrlM 400w,
-                     @b.ImageUrlL 600w"
+                            @b.ImageUrlM 400w,
+                            @b.ImageUrlL 600w"
                          sizes="(max-width: 600px) 200px, 400px, 600px"
-                         src="@b.ImageUrlL" alt="Book Image"
-                         onerror="this.src = '~/img/NoPicture.jpg';">
+                         src="@b.ImageUrlS" alt="Book Image"
+                         onerror="this.onerror = null; this.src = '~/img/NoPicture.jpg';">
                     <div class="card-body">
-                        <h5 class="card-title"><b>Author: </b>@b.BookAuthor</h5>
-                        <p class="card-text"><b>Title: </b>@b.BookTitle</p>
+                        <h5 class="card-title"><b>Title: </b>@b.BookTitle</h5>
+                        <p class="card-text"><b>Author: </b>@b.BookAuthor</p>
                     </div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><b>Publisher</b>@b.Publisher</li>
+                        <li class="list-group-item"><b>Publisher: </b>@b.Publisher</li>
                         <li class="list-group-item"><b>Year Published: </b>@b.YearOfPublication</li>
                         <li class="list-group-item"><b>ISBN: </b>@b.Isbn</li>
                     </ul>
                     <!--       <div class="card-body">
-                               <a href="#" class="card-link">Card link</a>
-                               <a href="#" class="card-link">Another link</a>
-                           </div>
-                       -->
+                            <a href="#" class="card-link">Card link</a>
+                            <a href="#" class="card-link">Another link</a>
+                        </div>
+                    -->
                 </div>
                 <br />
             }
