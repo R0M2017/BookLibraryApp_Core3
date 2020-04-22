@@ -20,6 +20,13 @@ namespace BookLibraryApp.Controllers
             return View(repository.GetBooks(options));
         }
 
+        [HttpPost]
+        public IActionResult AddBook(Books book)
+        {
+            repository.AddBook(book);
+            return RedirectToAction(nameof(Index));
+        }
+
         /*
     // GET: Books
      public async Task<IActionResult> Index()

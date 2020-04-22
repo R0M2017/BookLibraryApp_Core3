@@ -20,6 +20,12 @@ namespace BookLibraryApp.Models
             return new PagedList<Books>(_context.Books, options);
         }
 
+        public void AddBook(Books book)
+        {
+            _context.Books.Add(book);
+            _context.SaveChanges();
+        }
+
         // public Books GetBooks(string isbn) => _context.Books.Include(b => b.YearOfPublication).First(b => b.Isbn == isbn);
     }
 }

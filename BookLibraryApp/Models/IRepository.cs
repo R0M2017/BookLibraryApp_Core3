@@ -11,6 +11,8 @@ namespace BookLibraryApp.Models
         IEnumerable<Books> Books { get; }
         PagedList<Books> GetBooks(QueryOptions options);
 
-        /*void AddBook(Books book);*/
+        //Books GetBooks(string isbn);
+        void AddBook(Books book);
+        //void UpdateBook(Books book);
     }
 }

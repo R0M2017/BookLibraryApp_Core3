@@ -23,6 +23,20 @@
     @Html.Partial("PageOptions", Model)
 </div>
 <br />
+<form asp-controller="Books" asp-action="AddBook" method="post">
+    <div class="row">
+        <div class="col">Title<input name="BookTitle" class="form-control" /></div>
+        <div class="col">Author<input name="BookAuthor" class="form-control" /></div>
+        <div class="col">Publisher<input name="Publisher" class="form-control" /></div>
+        <div class="col">Year Published<input name="YearOfPublication" class="form-control" /></div>
+        <div class="col">ISBN<input name="Isbn" class="form-control" /></div>
+        <div class="col">Small Image<input name="ImageUrlS" class="form-control" /></div>
+        <div class="col">Medium Image<input name="ImageUrlM" class="form-control" /></div>
+        <div class="col">Large Image<input name="ImageUrlL" class="form-control" /></div>
+        <div class="col"><button type="submit" class="btn btn-primary">Add</button></div>
+    </div>
+</form>
+<br />
 <hr />
 <div class="bg-dark">
     <br />
