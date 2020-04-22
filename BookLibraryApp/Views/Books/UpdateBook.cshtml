@@ -1,0 +1,51 @@
+﻿@model Books
+@{
+    ViewData["Title"] = "UpdateBook";
+    Layout = "_Layout";
+}
+
+<h1>UpdateBook</h1>
+
+<div class="row justify-content-center">
+    <br />
+    <form asp-action="UpdateBook" method="post">
+        <div class="card m-2" style="width: 16rem;">
+            <div class="card-img-top bg-warning form-group">
+                <b><label asp-for="ImageUrlS"></label></b>
+                <input asp-for="ImageUrlS" class="form-control" />
+                <b><label asp-for="ImageUrlM"></label></b>
+                <input asp-for="ImageUrlM" class="form-control" />
+                <b><label asp-for="ImageUrlL"></label></b>
+                <input asp-for="ImageUrlL" class="form-control" />
+            </div>
+            <div class="card-body">
+                <h5 class="card-title form-group">
+                    <b><label asp-for="BookTitle"></label></b>
+                    <input asp-for="BookTitle" class="form-control" />
+                </h5>
+                <p class="card-text form-group">
+                    <b><label asp-for="BookAuthor"></label></b>
+                    <input asp-for="BookAuthor" class="form-control" />
+                </p>
+            </div>
+            <ul class="list-group list-group-flush form-group">
+                <li class="list-group-item form-control">
+                    <b><label asp-for="Publisher"></label></b>
+                    <input asp-for="Publisher" class="form-control" />
+                </li>
+                <li class="list-group-item form-group">
+                    <b><label asp-for="YearOfPublication"></label></b>
+                    <input asp-for="YearOfPublication" class="form-control" />
+                </li>
+                <li class="list-group-item form-group">
+                    <b><label asp-for="Isbn"></label></b>
+                    <input asp-for="Isbn" class="form-control" />
+                </li>
+            </ul>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Save</button>
+                <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+            </div>
+        </div>
+    </form>
+</div>
