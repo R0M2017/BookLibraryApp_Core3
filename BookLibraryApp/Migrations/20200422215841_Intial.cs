@@ -20,7 +20,7 @@ namespace BookLibraryApp.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PRIMARY", x => new { x.UserID, x.ISBN });
-                });
+                }); 
 
             migrationBuilder.CreateTable(
                 name: "books",
