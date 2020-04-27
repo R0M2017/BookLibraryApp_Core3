@@ -13,5 +13,7 @@ namespace BookLibraryApp.Models
         Books GetBook(string isbn);
         void AddBook(Books book);
         void UpdateBook(Books book);
+        void UpdateAll(Books[] books);
+        void Delete(Books book);
     }
 }

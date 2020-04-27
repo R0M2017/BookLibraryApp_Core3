@@ -35,11 +35,31 @@ namespace BookLibraryApp.Models
             b.BookAuthor = book.BookAuthor;
             b.Publisher = book.Publisher;
             b.YearOfPublication = book.YearOfPublication;
-            b.Isbn = book.Isbn;
             //_context.Books.Update(book);
             _context.SaveChanges();
         }
 
-        // public Books GetBooks(string isbn) => _context.Books.Include(b => b.YearOfPublication).First(b => b.Isbn == isbn);
+        public void UpdateAll(Books[] books)
+        {
+            //_context.Books.UpdateRange(books);
+            Dictionary<string, Books> data = books.ToDictionary(b => b.Isbn);
+            IEnumerable<Books> baseline = _context.Books.Where(b => data.Keys.Contains(b.Isbn));
+
+            foreach(Books databaseBook in baseline)
+            {
+                Books requestBook = data[databaseBook.Isbn];
+                databaseBook.BookTitle = requestBook.BookTitle;
+                databaseBook.BookAuthor = requestBook.BookAuthor;
+                databaseBook.Publisher = requestBook.Publisher;
+                databaseBook.YearOfPublication = requestBook.YearOfPublication;
+            }
+            _context.SaveChanges();
+        }
+
+        public void Delete(Books book)
+        {
+            _context.Books.Remove(book);
+            _context.SaveChanges();
+        }
     }
 }

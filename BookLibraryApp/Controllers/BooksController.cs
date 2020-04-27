@@ -38,5 +38,25 @@ namespace BookLibraryApp.Controllers
             repository.UpdateBook(book);
             return RedirectToAction(nameof(Index));
         }
+
+        public IActionResult UpdateAll()
+        {
+            ViewBag.UpdateAll = true;
+            return View(nameof(Index), repository.Books);
+        }
+
+        [HttpPost]
+        public IActionResult UpdateAll(Books[] books)
+        {
+            repository.UpdateAll(books);
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost]
+        public IActionResult Delete(Books book)
+        {
+            repository.Delete(book);
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

@@ -93,9 +93,15 @@
                             <li class="list-group-item"><b>Year Published: </b>@b.YearOfPublication</li>
                             <li class="list-group-item"><b>ISBN: </b>@b.Isbn</li>
                             <li class="list-group-item">
+                                <form asp-action="Delete" method="post">
                                 <a asp-action="UpdateBook" asp-route-isbn="@b.Isbn" class="btn btn-outline-primary">
                                     Edit
                                 </a>
+                                    <input type="hidden" name="isbn" value="@b.Isbn" />
+                                    <button type="submit" class="btn btn-outline-danger">
+                                        Delete
+                                    </button>
+                                    </form>
                             </li>
                         </ul>
                         <!--       <div class="card-body">
