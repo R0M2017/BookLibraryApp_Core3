@@ -17,13 +17,15 @@ namespace BookLibraryApp.Models
 
         public virtual DbSet<Bookratings> Bookratings { get; set; }
         public virtual DbSet<Books> Books { get; set; }
+        public virtual DbSet<Efmigrationshistory> Efmigrationshistory { get; set; }
+        public virtual DbSet<Publishers> Publishers { get; set; }
         public virtual DbSet<Users> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                 optionsBuilder.UseMySql("server=localhost;port=3306;user=root;password=LOTOS123l;database=booklibrarydatabase", x => x.ServerVersion("8.0.19-mysql"));
             }
         }
@@ -99,6 +101,38 @@ namespace BookLibraryApp.Models
                     .HasCollation("utf8mb4_0900_ai_ci");
 
                 entity.Property(e => e.YearOfPublication).HasColumnName("Year-Of-Publication");
+            });
+
+            modelBuilder.Entity<Efmigrationshistory>(entity =>
+            {
+                entity.HasKey(e => e.MigrationId)
+                    .HasName("PRIMARY");
+
+                entity.ToTable("__efmigrationshistory");
+
+                entity.Property(e => e.MigrationId)
+                    .HasColumnType("varchar(95)")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_0900_ai_ci");
+
+                entity.Property(e => e.ProductVersion)
+                    .IsRequired()
+                    .HasColumnType("varchar(32)")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_0900_ai_ci");
+            });
+
+            modelBuilder.Entity<Publishers>(entity =>
+            {
+                entity.HasKey(e => e.PublisherId)
+                    .HasName("PRIMARY");
+
+                entity.ToTable("publishers");
+
+                entity.Property(e => e.Publisher)
+                    .HasColumnType("varchar(255)")
+                    .HasCharSet("utf8mb4")
+                    .HasCollation("utf8mb4_0900_ai_ci");
             });
 
             modelBuilder.Entity<Users>(entity =>

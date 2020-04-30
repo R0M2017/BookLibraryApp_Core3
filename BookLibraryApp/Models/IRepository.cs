@@ -9,7 +9,7 @@ namespace BookLibraryApp.Models
     public interface IRepository 
     {
         IEnumerable<Books> Books { get; }
-        PagedList<Books> GetBooks(QueryOptions options);
+        PagedList<Books> GetBooks(QueryOptions options, long publisher = 0);
         Books GetBook(string isbn);
         void AddBook(Books book);
         void UpdateBook(Books book);

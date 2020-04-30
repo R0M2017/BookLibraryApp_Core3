@@ -15,8 +15,13 @@ namespace BookLibraryApp.Models
 
         public IEnumerable<Books> Books => _context.Books.ToArray();
 
-        public PagedList<Books> GetBooks(QueryOptions options)
+        public PagedList<Books> GetBooks(QueryOptions options, long publisher = 0)
         {
+            IQueryable<Books> query = _context.Books.Include(b => b.Publisher);
+            if (publisher != -0)
+            {
+                // query = query.Where(b => b.Publisher == publisher);
+            }
             return new PagedList<Books>(_context.Books, options);
         }
 
