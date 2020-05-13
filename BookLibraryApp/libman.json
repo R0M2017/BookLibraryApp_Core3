@@ -18,6 +18,11 @@
       "destination": "wwwroot/lib/popper/"
     },
     {
+      "library": "jqueryui@1.12.1",
+      "files": [],
+      "destination": "wwwroot/lib/jqueryui/"
+    },
+    {
       "provider": "unpkg",
       "library": "bootstrap@4.4.1",
       "files": [],
