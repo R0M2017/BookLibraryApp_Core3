@@ -12,3 +12,7 @@
 .card-img-top {
     content: "No Image"
 }
+
+.no-close .ui-dialog-titlebar-close {
+    display: none
+}
