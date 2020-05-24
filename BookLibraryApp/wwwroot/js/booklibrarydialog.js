@@ -2,10 +2,10 @@
     // this initializes the dialog (and uses some common options that I do)
     $("#dialog").dialog({
         autoOpen: false,
-        maxWidth: 600,
-        maxHeight: 600,
-        width: 600,
-        height: 600,
+        maxWidth: 700,
+        maxHeight: 500,
+        width: 700,
+        height: 500,
         modal: true,
         show: "blind",
         hide: "blind",

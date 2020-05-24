@@ -23,11 +23,6 @@
       "destination": "wwwroot/lib/jqueryui/"
     },
     {
-      "library": "quagga@0.12.1",
-      "files": [],
-      "destination": "wwwroot/lib/quagga/"
-    },
-    {
       "provider": "unpkg",
       "library": "bootstrap@4.4.1",
       "files": [],
