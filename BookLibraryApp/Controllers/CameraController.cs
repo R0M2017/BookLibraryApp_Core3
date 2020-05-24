@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using IronBarCode;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Hosting;
+using ZXing.Presentation;
 
 namespace BookLibraryApp.Controllers
 {
@@ -34,6 +37,11 @@ namespace BookLibraryApp.Controllers
                 {
                     if (file.Length > 0)
                     {
+                        var isbnFilepath = Path.Combine(_environment.WebRootPath, "webcamimg") + $@"\isbn.jpg";
+
+                        if (System.IO.File.Exists(isbnFilepath))
+                            System.IO.File.Delete(isbnFilepath);
+
                         var fileName = file.FileName;
                         var myUniqueFileName = Convert.ToString(Guid.NewGuid());
                         var fileExtension = Path.GetExtension(fileName);
@@ -42,6 +50,29 @@ namespace BookLibraryApp.Controllers
 
                         if (!string.IsNullOrEmpty(filepath))
                             StoreInFolder(file, filepath);
+
+
+                        //Spire.Barcode.BarCodeType.EAN13;
+                        string[] datas = Spire.Barcode.BarcodeScanner.Scan(filepath);
+                        // string data = Spire.Barcode.BarcodeScanner.ScanOne(filepath, true);
+                        Console.WriteLine("\n\nThe scanning result is: {0}.", datas[0]);
+                        
+
+
+                        /*string data = Spire.Barcode.BarcodeScanner.ScanOne(filepath, true);
+                        Console.WriteLine("\n\nThe scanning result is: {0}.", data);*/
+
+                        /*"https://ironsoftware.com/csharp/barcode"*/
+
+                        /*BarcodeWriter.CreateBarcode(filepath, BarcodeWriterEncoding.PDF417).SaveAsJpeg(isbnFilepath);
+
+                        BarcodeResult result = BarcodeReader.QuicklyReadOneBarcode(isbnFilepath);
+                        Console.WriteLine("\n\n" + result + "\n\n");
+                        if (result != null && result.Text == filepath)
+                            Console.WriteLine("Success");*/
+
+                        /*if (System.IO.File.Exists(filepath))
+                            System.IO.File.Delete(filepath);*/
 
                         /*
                         var imageBytes = System.IO.File.ReadAllBytes(filepath);
@@ -66,5 +97,19 @@ namespace BookLibraryApp.Controllers
             }
         }
 
+
+        /*
+        private void VideoCaptureDevice_NewFrame(object sender, AForge.Video.NewFrameEventArgs eventArgs)
+        {
+            Bitmap bitmap = (Bitmap)eventArgs.Frame.Clone();
+            ZXing.BarcodeReader reader = new ZXing.BarcodeReader();
+            var result = reader.Decode()
+        }
+
+        public Bitmap CreateBitmapSourceFromBitmap(Bitmap bitmap)
+        {
+
+        }
+        */
     }
 }
