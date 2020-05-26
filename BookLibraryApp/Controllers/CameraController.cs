@@ -24,7 +24,7 @@ namespace BookLibraryApp.Controllers
             return View();
         }
 
-        [HttpPost]
+      /*  [HttpPost]
         public IActionResult Capture(string name)
         {
             var files = HttpContext.Request.Form.Files;
@@ -43,12 +43,12 @@ namespace BookLibraryApp.Controllers
                         if (!string.IsNullOrEmpty(filepath))
                             StoreInFolder(file, filepath);
 
-                        /*
+                        *//*
                         var imageBytes = System.IO.File.ReadAllBytes(filepath);
 
                         if (imageBytes != null)
                             StoreInDatabase(imageBytes);
-                            */
+                            *//*
                     }
                 }
                 return Json(true);
@@ -64,7 +64,7 @@ namespace BookLibraryApp.Controllers
                 file.CopyTo(fs);
                 fs.Flush();
             }
-        }
+        }*/
 
     }
 }
