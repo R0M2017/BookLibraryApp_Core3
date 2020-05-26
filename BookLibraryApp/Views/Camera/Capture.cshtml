@@ -54,7 +54,7 @@
                     }
                 }
             },
-        }, function (err) {
+        }, (err) => {
             if (err) {
                 console.log(err);
                 return
@@ -64,15 +64,15 @@
             // Set flag to is running
             _scannerIsRunning = true;
         });
-        Quagga.onProcessed(function (result) {
+        Quagga.onProcessed((result) => {
             var drawingCtx = Quagga.canvas.ctx.overlay,
                 drawingCanvas = Quagga.canvas.dom.overlay;
             if (result) {
                 if (result.boxes) {
                     drawingCtx.clearRect(0, 0, parseInt(drawingCanvas.getAttribute("width")), parseInt(drawingCanvas.getAttribute("height")));
-                    result.boxes.filter(function (box) {
+                    result.boxes.filter((box) => {
                         return box !== result.box;
-                    }).forEach(function (box) {
+                    }).forEach((box) => {
                         Quagga.ImageDebug.drawPath(box, { x: 0, y: 1 }, drawingCtx, { color: "green", lineWidth: 2 });
                     });
                 }
@@ -84,13 +84,22 @@
                 }
             }
         });
-        Quagga.onDetected(function (result) {
+        Quagga.onDetected((result) => {
             var isbn = result.codeResult.code;
+            $.getJSON("/json/isbnStorage.json", (data) => {
+                data.isbnScanned.push({
+                    isbn: isbn
+                });
+            })
+            /*var jsonObject = JSON.parse(isbnStorage);
+            jsonObject.isbnScanned.push({
+                isbn: isbn
+            })*/
             console.log("Barcode detected and processed : [" + isbn + "]", result);
         });
     }
     // Start/stop scanner
-    document.getElementById("btn").addEventListener("click", function () {
+    document.getElementById("btn").addEventListener("click", () => {
         if (_scannerIsRunning) {
             Quagga.stop();
         } else {
