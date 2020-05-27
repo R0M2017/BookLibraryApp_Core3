@@ -86,11 +86,15 @@
         });
         Quagga.onDetected((result) => {
             var isbn = result.codeResult.code;
-            $.getJSON("/json/isbnStorage.json", (data) => {
-                data.isbnScanned.push({
-                    isbn: isbn
-                });
-            })
+            /*$.getJSON("/json/isbnStorage.json", (data) => {
+                data.isbnScanned.push({ isbn: isbn });
+                JSON.stringify(data);
+            })*/
+
+            var data = JSON.parse("/json/isbnStorage.json");
+            data.isbnScanned.push({ isbn: isbn });
+            JSON.stringify(data);
+
             /*var jsonObject = JSON.parse(isbnStorage);
             jsonObject.isbnScanned.push({
                 isbn: isbn
