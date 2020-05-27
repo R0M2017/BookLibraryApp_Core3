@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Threading.Tasks;
 using BookLibraryApp.Models;
@@ -20,6 +21,11 @@ namespace BookLibraryApp
 
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
+
+        public Startup(IConfiguration configuration) => Configuration = configuration;
+
+        public IConfiguration Configuration { get; }
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
@@ -28,6 +34,13 @@ namespace BookLibraryApp
             services.AddDbContext<BookLibraryContext>(options => options
                 .UseMySql("server=localhost;port=3306;user=root;password=LOTOS123l;database=booklibrarydatabase;", mySqlOptions => mySqlOptions
                     .ServerVersion("8.0.19-mysql")));
+            // identity
+            /*services.AddDbContext<BookLibraryAppIdentityContext>(options =>
+            options.UseSqlServer(
+                Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDefaultIdentity<BookLibraryAppIdentityUser>(options =>
+                                                      options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<BookLibraryAppIdentityContext>();*/
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
