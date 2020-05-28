@@ -34,6 +34,10 @@ namespace BookLibraryApp
             services.AddDbContext<BookLibraryContext>(options => options
                 .UseMySql("server=localhost;port=3306;user=root;password=LOTOS123l;database=booklibrarydatabase;", mySqlOptions => mySqlOptions
                     .ServerVersion("8.0.19-mysql")));
+
+
+
+
             // identity
             /*services.AddDbContext<BookLibraryAppIdentityContext>(options =>
             options.UseSqlServer(
