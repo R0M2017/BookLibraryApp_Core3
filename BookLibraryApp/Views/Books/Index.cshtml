@@ -20,12 +20,14 @@
             </div>
         </div>
         <div class="text-center">
+            @await Html.PartialAsync("Pages", Model)
             @{
                 ViewBag.searches = new string[] { "BookTitle", "BookAuthor", "Publisher" };
                 ViewBag.sorts = new string[] { "BookTitle", "BookAuthor",
             "Publisher", "YearOfPublication"};
             }
-            <partial name="PageOptions" model="Model" />
+            <!--<partial name="PageOptions" model="Model" />-->
+            @await Html.PartialAsync("PageOptions", Model)
         </div>
         <br />
         <hr />
@@ -122,7 +124,8 @@
             }
             else
             {
-                <partial name="InlineEditor" model="Model" />
+                <!--<partial name="InlineEditor" model="Model" />-->
+                @await Html.PartialAsync("InlineEditor", Model)
             }
             <br />
             <br />
@@ -130,6 +133,9 @@
         <hr />
         <br />
         <div class="text-center">
-            <partial name="Pages" model="Model" />
+            <!--<partial name="Pages" model="Model" />-->
+            @await Html.PartialAsync("Pages", Model)
         </div>
         <br />
+    </div>
+</div>

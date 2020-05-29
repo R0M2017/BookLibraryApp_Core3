@@ -16,17 +16,17 @@ namespace BookLibraryApp.Models
 
         public IEnumerable<Books> Books => _context.Books.ToArray();
 
-        public PagedList<Books> GetBooks(QueryOptions options, long publisher = 0)
+        public PagedList<Books> GetBooks(QueryOptions options)
         {
-            IQueryable<Books> query = _context.Books.Include(b => b.Publisher);
+            /*IQueryable<Books> query = _context.Books.Include(b => b.Publisher);
             if (publisher != -0)
             {
                 // query = query.Where(b => b.Publisher == publisher);
-            }
+            }*/
             return new PagedList<Books>(_context.Books, options);
         }
 
-        public Books GetBook(int bookid) => _context.Books.Find(bookid);
+        public Books GetBook(int bookid) => _context.Books.First(b => b.BookId == bookid);
 
         public void AddBook(Books book)
         {
@@ -36,7 +36,8 @@ namespace BookLibraryApp.Models
 
         public void UpdateBook(Books book)
         {
-            Books b = GetBook(book.BookId);
+            Books b = _context.Books.Find(book.BookId);
+            //Books b = GetBook(book.BookId);
             b.Isbn = book.Isbn;
             b.BookTitle = book.BookTitle;
             b.BookAuthor = book.BookAuthor;
