@@ -10,7 +10,7 @@ namespace BookLibraryApp.Models
     {
         IEnumerable<Books> Books { get; }
         PagedList<Books> GetBooks(QueryOptions options, long publisher = 0);
-        Books GetBook(string isbn);
+        Books GetBook(int bookid);
         void AddBook(Books book);
         void UpdateBook(Books book);
         void UpdateAll(Books[] books);

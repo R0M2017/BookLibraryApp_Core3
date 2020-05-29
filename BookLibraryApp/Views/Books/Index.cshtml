@@ -25,7 +25,7 @@
                 ViewBag.sorts = new string[] { "BookTitle", "BookAuthor",
             "Publisher", "YearOfPublication"};
             }
-            @Html.Partial("PageOptions", Model)
+            <partial name="PageOptions" model="Model" />
         </div>
         <br />
         <hr />
@@ -99,10 +99,10 @@
                                     <li class="list-group-item"><b>ISBN: </b>@b.Isbn</li>
                                     <li class="list-group-item">
                                         <form asp-action="Delete" method="post">
-                                            <a asp-action="UpdateBook" asp-route-isbn="@b.Isbn" class="btn btn-outline-primary">
+                                            <a asp-action="UpdateBook" asp-route-bookid="@b.BookId" class="btn btn-outline-primary">
                                                 Edit
                                             </a>
-                                            <input type="hidden" name="isbn" value="@b.Isbn" />
+                                            <input type="hidden" name="bookid" value="@b.BookId" />
                                             <button type="submit" class="btn btn-outline-danger">
                                                 Delete
                                             </button>
@@ -122,7 +122,7 @@
             }
             else
             {
-                @Html.Partial("InlineEditor", Model)
+                <partial name="InlineEditor" model="Model" />
             }
             <br />
             <br />
@@ -130,6 +130,6 @@
         <hr />
         <br />
         <div class="text-center">
-            @Html.Partial("Pages", Model)
+            <partial name="Pages" model="Model" />
         </div>
         <br />

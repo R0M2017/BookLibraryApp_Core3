@@ -27,9 +27,9 @@ namespace BookLibraryApp.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        public IActionResult UpdateBook(string isbn)
+        public IActionResult UpdateBook(int bookid)
         {
-            return View(repository.GetBook(isbn));
+            return View(repository.GetBook(bookid));
         }
 
         [HttpPost]
