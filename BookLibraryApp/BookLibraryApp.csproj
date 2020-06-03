@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\Identity\Pages\Account\" />
     <Folder Include="wwwroot\img\" />
     <Folder Include="wwwroot\webcamimg\" />
   </ItemGroup>
