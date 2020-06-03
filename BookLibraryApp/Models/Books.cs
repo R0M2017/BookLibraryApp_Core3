@@ -5,6 +5,11 @@ namespace BookLibraryApp.Models
 {
     public partial class Books
     {
+        public Books()
+        {
+            Library = new HashSet<Library>();
+        }
+
         public int BookId { get; set; }
         public string Isbn { get; set; }
         public string BookTitle { get; set; }
@@ -14,5 +19,7 @@ namespace BookLibraryApp.Models
         public string ImageUrlS { get; set; }
         public string ImageUrlM { get; set; }
         public string ImageUrlL { get; set; }
+
+        public virtual ICollection<Library> Library { get; set; }
     }
 }
