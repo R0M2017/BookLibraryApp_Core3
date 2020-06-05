@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Linq;
 using System.Threading.Tasks;
 using BookLibraryApp.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -31,12 +32,18 @@ namespace BookLibraryApp
         {
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.AddAuthentication("CookieAuthentication")
+                .AddCookie("CookieAuthentication", config => 
+                {
+                    config.Cookie.Name = "UserLoginCookie";
+                    config.LoginPath = "/Login/UserLogin";
+                });
             services.AddTransient<IRepository, BookRepository>();
             services.AddDbContext<BookLibraryContext>(options => options
                 .UseMySql("server=localhost;port=3306;user=root;password=LOTOS123l;database=booklibrarydatabase;", mySqlOptions => mySqlOptions
                     .ServerVersion("8.0.19-mysql")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<BookLibraryContext>();
+            /*services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<BookLibraryContext>();*/
 
 
             // identity
@@ -67,6 +74,10 @@ namespace BookLibraryApp
 
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseCookiePolicy(new CookiePolicyOptions
+            {
+                MinimumSameSitePolicy = SameSiteMode.Strict,
+            });
 
             app.UseEndpoints(endpoints =>
             {
