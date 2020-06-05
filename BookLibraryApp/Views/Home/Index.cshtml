@@ -3,6 +3,41 @@
     ViewData["Title"] = "Index";
     Layout = "_Layout";
 }
+<div class="jumbotron">
+    <div class="library">
+        @for (int i = 0; i < 5; i++)
+        {
+            <div class="book" id="book">
+                Book
+            </div>
+        }
+        <div class="book" id="book">
+            <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+        </div>
+        <div class="book" id="book">
+            <a asp-area="" asp-controller="Books" asp-action="Index">Books</a>
+        </div>
+        <div class="book" id="book">
+            <a href="#">New User</a>
+        </div>
+        @for (int i = 0; i < 5; i++)
+        {
+            <div class="book" id="book">
+                Book
+            </div>
+        }
+        <div class="shelf">
 
-<h1>Index</h1>
-
+        </div>
+    </div>
+</div>
+<script>
+    $.getJSON("/json/crayola.json", (colors) => {
+        var books = document.getElementsByClassName('book');
+        for (var i = 0; i < books.length; i++) {
+            //var colors = ['#ff0000', '#00ff00', '#0000ff'];
+            var random_color = colors[Math.floor(Math.random() * colors.length)].hex;
+            books[i].style.backgroundColor = random_color;
+        }
+    });
+</script>

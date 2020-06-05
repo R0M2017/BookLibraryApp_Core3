@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BookLibraryApp.Models;
 using BookLibraryApp.Models.Pages;
+using Nancy.Json;
+using BookLibraryApp.Models.data;
 
 namespace BookLibraryApp.Controllers
 {
@@ -57,6 +59,18 @@ namespace BookLibraryApp.Controllers
         {
             repository.Delete(book);
             return RedirectToAction(nameof(Index));
+        }
+
+        public isbnStorage[] isbnStorage;
+
+        public JsonResult InsertISBN(string isbn)
+        {
+            var js = new JavaScriptSerializer();
+            isbnStorage = js.Deserialize<isbnStorage[]>(isbn);
+            //foreach (var i in isbnStorage)
+                //System.Diagnostics.Debug.WriteLine("\n\n" + i + "\n\n");
+                // System.Diagnostics.Debug.WriteLine("\n\n" + isbn + "\n\n");
+                return Json("result");
         }
     }
 }

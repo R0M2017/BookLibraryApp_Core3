@@ -21,8 +21,13 @@
 <!-- Include the image-diff library -->
 <script src="~/lib/quagga/quagga.min.js"></script>
 
+<!-- Include JSON file -->
+<script type="text/javascript" src="~/json/isbnStorage.json"></script>
+
 <script>
     var _scannerIsRunning = false;
+    var scannerISBN = new Array();
+
     function startScanner() {
         Quagga.init({
             inputStream: {
@@ -85,21 +90,78 @@
             }
         });
         Quagga.onDetected((result) => {
-            var isbn = result.codeResult.code;
+            // var isbn = result.codeResult.code;
+
             /*$.getJSON("/json/isbnStorage.json", (data) => {
                 data.isbnScanned.push({ isbn: isbn });
                 JSON.stringify(data);
             })*/
 
-            var data = JSON.parse("/json/isbnStorage.json");
+           /* $.getJSON("/json/isbnStorage.json", (data) => {
+                var scannedisbn = result.codeResult.code;
+                //for (var i = 0; i < data.length; i++) {
+                    data.isbnScanned.push({ isbn: scannedisbn });
+                console.log("ISB Scanned : [" + scannedisbn + "]", result);
+                //}
+                console.log("Barcode detected and processed : [" + scannedisbn + "]", result);
+            });*/
+
+
+            /*var data = JSON.parse("/json/isbnStorage.json");
             data.isbnScanned.push({ isbn: isbn });
-            JSON.stringify(data);
+            JSON.stringify(data);*/
 
             /*var jsonObject = JSON.parse(isbnStorage);
             jsonObject.isbnScanned.push({
                 isbn: isbn
             })*/
-            console.log("Barcode detected and processed : [" + isbn + "]", result);
+
+            var isbn = result.codeResult.code;
+            scannerISBN.push(isbn);
+            if (scannerISBN.length == 20) {
+                var modeISBN = mode(scannerISBN);
+
+                $.ajax({
+                type: "POST",
+                url: "@Url.Action("InsertISBN", "Books")",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: JSON.stringify(modeISBN),
+                success: () => {
+                    console.log("Recording ISBN: " + isbn);
+                },
+                error: () => {
+                    console.log("Error Recording ISBN: " + isbn);
+                }
+            });
+            }
+            /*$.getJSON("/json/isbnStorage.json", (data) => {
+                var serializedisbn = JSON.stringify(isbn);
+                data.storage.push(serializedisbn);
+                if (data.storage.length == 20)
+                    if (_scannerIsRunning)
+                        Quagga.stop();
+            });*/
+
+            //var jsonstorage = JSON.parse(isbnStorage);
+
+            /*$.getJSON("/json/isbnStorage.json", (data) => {
+                $.each(data, (index, value) => {
+
+                    console.log(value);
+                });
+            });*/
+
+
+
+            /*$.post("/json/isbnStorage.json", (data) => {
+                $("")
+            });*/
+
+
+            // console.log("Barcode detected and processed : [" + isbn + "]", result);
+
+
         });
     }
     // Start/stop scanner
@@ -110,6 +172,25 @@
             startScanner();
         }
     }, false);
+
+    function mode(array) {
+        if (array.length == 0)
+            return null;
+        var modeMap = {};
+        var maxEl = array[0], maxCount = 1;
+        for (var i = 0; i < array.length; i++) {
+            var el = array[i];
+            if (modeMap[el] == null)
+                modeMap[el] = 1;
+            else
+                modeMap[el]++;
+            if (modeMap[el] > maxCount) {
+                maxEl = el;
+                maxCount = modeMap[el];
+            }
+        }
+        return maxEl;
+    }
 </script>
 
 <!--

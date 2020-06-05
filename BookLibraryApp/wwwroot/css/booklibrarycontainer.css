@@ -1,0 +1,66 @@
+﻿.library {
+    text-align: center;
+    font-size: 70px;
+    color: aliceblue;
+    text-shadow: 2px 2px;
+    
+}
+
+.book {
+    height: 500px;
+    width: 100px;
+    border: solid 1px;
+    display: inline-block;
+    writing-mode: vertical-lr;
+    text-orientation: mixed;
+}
+
+.shelf {
+    height: 50px;
+    widows: 100%;
+    border: solid 1px;
+    background-color: #ffc34d;
+}
+
+/* Container holding the image and the text */
+.imgcontained {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+/* Bottom left text */
+.imgbottom-left {
+    position: absolute;
+    bottom: 8px;
+    left: 16px;
+}
+
+/* Top left text */
+.imgtop-left {
+    position: absolute;
+    top: 8px;
+    left: 16px;
+}
+
+/* Top right text */
+.imgtop-right {
+    position: absolute;
+    top: 8px;
+    right: 16px;
+}
+
+/* Bottom right text */
+.imgbottom-right {
+    position: absolute;
+    bottom: 8px;
+    right: 16px;
+}
+
+/* Centered text */
+.imgcentered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
