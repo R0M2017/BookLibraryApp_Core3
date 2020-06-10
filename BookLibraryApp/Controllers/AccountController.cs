@@ -13,6 +13,12 @@ namespace BookLibraryApp.Controllers
         private IAccountRepository accountRepository;
         public AccountController(IAccountRepository repo) => accountRepository = repo;
 
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
         public IActionResult Register(Users user)
         {
             accountRepository.Register(user);

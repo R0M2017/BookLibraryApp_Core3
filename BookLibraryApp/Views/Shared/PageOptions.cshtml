@@ -1,4 +1,31 @@
-﻿
+﻿<div class="container-fluid mt-2">
+    <!--
+    <div class="row m-1">
+        <div class="col"></div>
+        <div class="col-1">
+            <label class="col-form-label">ISBN Search</label>
+        </div>
+        <div class="col-3">
+            <select form="pageform" name="options.searchisbn"
+                    class="form-control" hidden>
+                    <option value="ISBN" selected="@(Model.Options.SearchISBN == "isbn")">
+                        ISBN
+                    </option>
+            </select>
+        </div>
+        <div class="col">
+            <input form="pageform" class="form-control" name="options.isbn" />
+        </div>
+        <div class="col-1 text-right">
+            <button form="pageform" class="btn btn-secondary" type="submit">
+                Search ISBN
+            </button>
+        </div>
+        <div class="col"></div>
+    </div>
+        -->
+</div>
+<br /><br />
 <div class="container-fluid mt-2">
     <div class="row m-1">
         <div class="col"></div>
@@ -10,8 +37,7 @@
                     class="form-control">
                 @foreach (string s in ViewBag.searches as string[])
                 {
-                    <option value="@s"
-                            selected="@(Model.Options.SearchPropertyName == s)">
+                    <option value="@s" selected="@(Model.Options.SearchPropertyName == s)">
                         @(s.IndexOf('.') == -1 ? s : s.Substring(0, s.IndexOf('.')))
                     </option>
                 }
@@ -38,8 +64,7 @@
                     class="form-control">
                 @foreach (string s in ViewBag.sorts as string[])
                 {
-                    <option value="@s"
-                            selected="@(Model.Options.OrderPropertyName == s)">
+                    <option value="@s" selected="@(Model.Options.OrderPropertyName == s)">
                         @(s.IndexOf('.') == -1 ? s : s.Substring(0, s.IndexOf('.')))
                     </option>
                 }

@@ -29,6 +29,26 @@ namespace BookLibraryApp.Controllers
             return View();
         }
 
+        [HttpPost]
+        public JsonResult InsertISBN(string isbn)
+        {
+            isbnStorage isbnStorage = new isbnStorage
+            {
+                isbn = isbn
+            };
+            System.Diagnostics.Debug.WriteLine("\n\n Working... \n\n");
+            return Json(isbnStorage);
+
+
+            // var js = new JavaScriptSerializer();
+            // isbnStorage = js.Deserialize<isbnStorage[]>(isbn);
+            // System.Diagnostics.Debug.WriteLine("\n\n Controller recieving information \n\n");
+            // foreach (var i in isbnStorage)
+            // System.Diagnostics.Debug.WriteLine("\n\n" + i + "\n\n");
+            // System.Diagnostics.Debug.WriteLine("\n\n" + isbn + "\n\n");
+            // return RedirectToAction("Index", "Books");
+        }
+
         /*[HttpPost]
         public IActionResult InsertISBN(string isbn)
         {
@@ -45,47 +65,47 @@ namespace BookLibraryApp.Controllers
                 return Json("result");
         }*/
 
-      /*  [HttpPost]
-        public IActionResult Capture(string name)
-        {
-            var files = HttpContext.Request.Form.Files;
-            if (files != null)
-            {
-                foreach (var file in files)
-                {
-                    if (file.Length > 0)
-                    {
-                        var fileName = file.FileName;
-                        var myUniqueFileName = Convert.ToString(Guid.NewGuid());
-                        var fileExtension = Path.GetExtension(fileName);
-                        var newFileName = string.Concat(myUniqueFileName, fileExtension);
-                        var filepath = Path.Combine(_environment.WebRootPath, "webcamimg") + $@"\{newFileName}";
+        /*  [HttpPost]
+          public IActionResult Capture(string name)
+          {
+              var files = HttpContext.Request.Form.Files;
+              if (files != null)
+              {
+                  foreach (var file in files)
+                  {
+                      if (file.Length > 0)
+                      {
+                          var fileName = file.FileName;
+                          var myUniqueFileName = Convert.ToString(Guid.NewGuid());
+                          var fileExtension = Path.GetExtension(fileName);
+                          var newFileName = string.Concat(myUniqueFileName, fileExtension);
+                          var filepath = Path.Combine(_environment.WebRootPath, "webcamimg") + $@"\{newFileName}";
 
-                        if (!string.IsNullOrEmpty(filepath))
-                            StoreInFolder(file, filepath);
+                          if (!string.IsNullOrEmpty(filepath))
+                              StoreInFolder(file, filepath);
 
-                        *//*
-                        var imageBytes = System.IO.File.ReadAllBytes(filepath);
+                          *//*
+                          var imageBytes = System.IO.File.ReadAllBytes(filepath);
 
-                        if (imageBytes != null)
-                            StoreInDatabase(imageBytes);
-                            *//*
-                    }
-                }
-                return Json(true);
-            }
-            else
-                return Json(false);
-        }
+                          if (imageBytes != null)
+                              StoreInDatabase(imageBytes);
+                              *//*
+                      }
+                  }
+                  return Json(true);
+              }
+              else
+                  return Json(false);
+          }
 
-        private void StoreInFolder(IFormFile file, string fileName)
-        {
-            using (FileStream fs = System.IO.File.Create(fileName))
-            {
-                file.CopyTo(fs);
-                fs.Flush();
-            }
-        }*/
+          private void StoreInFolder(IFormFile file, string fileName)
+          {
+              using (FileStream fs = System.IO.File.Create(fileName))
+              {
+                  file.CopyTo(fs);
+                  fs.Flush();
+              }
+          }*/
 
     }
 }

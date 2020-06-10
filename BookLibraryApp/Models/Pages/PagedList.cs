@@ -20,6 +20,8 @@ namespace BookLibraryApp.Models.Pages
                     query = Order(query, options.OrderPropertyName, options.DescendingOrder);
                 if (!string.IsNullOrEmpty(options.SearchPropertyName) && !string.IsNullOrEmpty(options.SearchTerm))
                     query = Search(query, options.SearchPropertyName, options.SearchTerm);
+                if (!string.IsNullOrEmpty(options.SearchISBN) && !string.IsNullOrEmpty(options.SearchTerm))
+                    query = Search(query, options.SearchISBN, options.SearchTerm);
             }
 
             TotalPages = query.Count() / PageSize;

@@ -12,6 +12,7 @@ namespace BookLibraryApp.Models.Pages
         public string OrderPropertyName { get; set; }
         public bool DescendingOrder { get; set; }
         public string SearchPropertyName { get; set; }
+        public string SearchISBN { get; set; }
         public string SearchTerm { get; set; }
     }
 }

@@ -123,7 +123,7 @@
 
                 $.ajax({
                 type: "POST",
-                url: "@Url.Action("InsertISBN", "Books")",
+                url: "@Url.Action("InsertISBN", "Camera")",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 data: JSON.stringify(modeISBN),
@@ -132,16 +132,9 @@
                 },
                 error: () => {
                     console.log("Error Recording ISBN: " + isbn);
-                }
-            });
+                    }
+                });
             }
-            /*$.getJSON("/json/isbnStorage.json", (data) => {
-                var serializedisbn = JSON.stringify(isbn);
-                data.storage.push(serializedisbn);
-                if (data.storage.length == 20)
-                    if (_scannerIsRunning)
-                        Quagga.stop();
-            });*/
 
             //var jsonstorage = JSON.parse(isbnStorage);
 
