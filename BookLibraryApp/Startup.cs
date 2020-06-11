@@ -30,21 +30,23 @@ namespace BookLibraryApp
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
-            services.AddRazorPages();
             services.AddAuthentication("CookieAuthentication")
-                .AddCookie("CookieAuthentication", config => 
+                .AddCookie("CookieAuthentication", config =>
                 {
                     config.Cookie.Name = "UserLoginCookie";
-                    config.LoginPath = "/Login/UserLogin";
+                    config.LoginPath = "/Account/Login";
                 });
             services.AddTransient<IRepository, BookRepository>();
+            services.AddTransient<IAccountRepository, AccountRepository>();
             services.AddDbContext<BookLibraryContext>(options => options
                 .UseMySql("server=localhost;port=3306;user=root;password=LOTOS123l;database=booklibrarydatabase;", mySqlOptions => mySqlOptions
                     .ServerVersion("8.0.19-mysql")));
+
+            services.AddControllersWithViews();
+            services.AddRazorPages();
+
             /*services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<BookLibraryContext>();*/
-
 
             // identity
             /*services.AddDbContext<BookLibraryAppIdentityContext>(options =>

@@ -28,6 +28,11 @@
       "destination": "wwwroot/lib/quagga/"
     },
     {
+      "library": "inputmask@4.0.9",
+      "files": [],
+      "destination": "wwwroot/lib/inputmask/"
+    },
+    {
       "provider": "unpkg",
       "library": "bootstrap@4.4.1",
       "files": [],

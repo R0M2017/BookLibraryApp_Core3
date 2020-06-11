@@ -7,12 +7,12 @@ namespace BookLibraryApp.Models
     {
         public Roles()
         {
-            Userroles = new HashSet<Userroles>();
+            Accounts = new HashSet<Accounts>();
         }
 
-        public string Id { get; set; }
+        public int RoleId { get; set; }
         public string Name { get; set; }
 
-        public virtual ICollection<Userroles> Userroles { get; set; }
+        public virtual ICollection<Accounts> Accounts { get; set; }
     }
 }
