@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Diagnostics;
 using System.Linq;
 using System.Security.Claims;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using BookLibraryApp.Models;
 using Microsoft.AspNetCore.Authentication;
@@ -51,15 +52,13 @@ namespace BookLibraryApp.Controllers
             if (ModelState.IsValid)
             {
                 char[] charsToTrim = { '*', ' ', '\'', '(', ')', '-' };
-
-                //if (checkUsername == false && checkEmail == false && checkPhonenumber == false)
-                //{
+                Regex.Replace(user.Phonenumber, @"[^0-9a-zA-Z]+", "");
                 accountRepository.Register(new Accounts
                 {
                     AccountId = accountRepository.GetID() + 1,
                     Username = user.Username,
                     Email = user.Email,
-                    Phonenumber = user.Phonenumber.Trim(charsToTrim),
+                    Phonenumber = Regex.Replace(user.Phonenumber, @"[^0-9a-zA-Z]+", "")/*user.Phonenumber.Trim(charsToTrim)*/,
                     Firstname = user.Firstname,
                     Lastname = user.Lastname,
                     Dateofbirth = user.Dateofbirth,
@@ -81,7 +80,6 @@ namespace BookLibraryApp.Controllers
         HttpContext.SignInAsync(userPrinciple);*/
 
                 return RedirectToAction("Index", "Home");
-                //}
             }
             return View(user);
         }
