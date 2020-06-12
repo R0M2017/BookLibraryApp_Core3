@@ -12,6 +12,7 @@ namespace BookLibraryApp.Models
         //Accounts Login(string Username, string Password);
         void Register(Accounts user);
         int GetID();
+
         
         /*public IEnumerable<Accounts> GetUsers()
         {

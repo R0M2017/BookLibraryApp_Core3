@@ -41,30 +41,16 @@ namespace BookLibraryApp.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Register(Accounts user)
         {
-            if (user != null && accountRepository.Accounts.Any(u => u.Username.ToLower() == user.Username.ToLower()))
-            {
-                ModelState.AddModelError("UsernameError", "Username address already exists");
-                return View(user);
-            }
+
+            if (user.Username != null && accountRepository.Accounts.Any(u => u.Username.ToLower() == user.Username.ToLower()))
+                ModelState.AddModelError("Username", "Username address already exists");
             if (user.Email != null && accountRepository.Accounts.Any(u => u.Email.ToLower() == user.Email.ToLower()))
-            {
-                ModelState.AddModelError("EmailError", "Email address already exists");
-                return View(user);
-            }
-            if (user.Phonenumber != null && accountRepository.Accounts.Any(u => u.Phonenumber.ToLower() == user.Phonenumber.ToLower()))
-            {
-                ModelState.AddModelError("PhonenumberError", "Phone Number already exists");
-                return View(user);
-            }
+                ModelState.AddModelError("Email", "Email address already exists");
+            if (user.Phonenumber != null && accountRepository.Accounts.Any(u => u.Phonenumber == user.Phonenumber))
+                ModelState.AddModelError("Phonenumber", "Phone Number already exists");
             if (ModelState.IsValid)
             {
                 char[] charsToTrim = { '*', ' ', '\'', '(', ')', '-' };
-
-                /*Accounts email = accountRepository.Accounts.FirstOrDefault(u => u.Email.ToLower() == user.Email.ToLower());
-                Accounts username = accountRepository.Accounts.FirstOrDefault(u => u.Username.ToLower() == user.Username.ToLower());
-                Accounts phone = accountRepository.Accounts.FirstOrDefault(u => u.Phonenumber.ToLower() == user.Phonenumber.ToLower());*/
-
-
 
                 //if (checkUsername == false && checkEmail == false && checkPhonenumber == false)
                 //{
