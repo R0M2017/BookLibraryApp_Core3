@@ -16,10 +16,18 @@ namespace BookLibraryApp.Models
         public AccountRepository(BookLibraryContext context) => _context = context;
         public IEnumerable<Accounts> Accounts => _context.Accounts.ToArray();
 
-        public Accounts Login(string Username, string Email, string Password)
+        /*public Accounts Login(Accounts user)
         {
-            return _context.Accounts.First(u => (u.Username == Username || u.Email == Email) && u.Password == Password);
-        }
+            return _context.Accounts.First(u => 
+                (
+                    (   
+                        u.Username.ToLower() == user.Username.ToLower() || 
+                        u.Email.ToLower() == user.Email.ToLower()
+                    ) && 
+                    u.Password.ToLower() == user.Password.ToLower()
+                )
+            );
+        }*/
         public void Register(Accounts user)
         {
             _context.Accounts.Add(user);
@@ -29,6 +37,7 @@ namespace BookLibraryApp.Models
 
         public int GetID() => _context.Accounts.ToArray().Length;
 
+        public Accounts GetAccount(int accountID) => _context.Accounts.First(u => u.AccountId == accountID);
 
         /*public Accounts Login(string Username, string Password)
         {

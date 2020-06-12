@@ -15,17 +15,14 @@ namespace BookLibraryApp.Models
 
         public int AccountId { get; set; }
         [Required]
-        //[Remote("UsernameIsAlreadySigned", "Account", HttpMethod = "POST", ErrorMessage = "Username already exists in database.")]
         [Display(Name = "Username")]
         public string Username { get; set; }
         [Required]
         [EmailAddress(ErrorMessage = "Invalid Email Address")]
-        //[Remote("EmailIsAlreadySigned", "Account", HttpMethod = "POST", ErrorMessage = "Email already exists in database.")]
         [Display(Name = "Email")]
         public string Email { get; set; }
         [Required]
         [Phone(ErrorMessage = "Invalid Phone Number")]
-        //[Remote("PhoneIsAlreadySigned", "Account", HttpMethod = "POST", ErrorMessage = "Phone Number already exists in database.")]
         [Display(Name = "Phonenumber")]
         public string Phonenumber { get; set; }
         [Required]

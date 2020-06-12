@@ -8,11 +8,11 @@ namespace BookLibraryApp.Models
     public interface IAccountRepository
     {
         IEnumerable<Accounts> Accounts { get; }
-        Accounts Login(string Username, string Email, string Password);
+        //Accounts Login(Accounts user);
         //Accounts Login(string Username, string Password);
         void Register(Accounts user);
         int GetID();
-
+        Accounts GetAccount(int accountID); 
         
         /*public IEnumerable<Accounts> GetUsers()
         {
