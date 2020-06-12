@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Diagnostics;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using BookLibraryApp.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Internal;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Org.BouncyCastle.Crypto.Tls;
 
 namespace BookLibraryApp.Controllers
@@ -35,13 +38,36 @@ namespace BookLibraryApp.Controllers
         public IActionResult Register() => View();
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Register(Accounts user)
         {
-            //repository.AddBook(book);
-            //return RedirectToAction(nameof(Index));
+            if (user != null && accountRepository.Accounts.Any(u => u.Username.ToLower() == user.Username.ToLower()))
+            {
+                ModelState.AddModelError("UsernameError", "Username address already exists");
+                return View(user);
+            }
+            if (user.Email != null && accountRepository.Accounts.Any(u => u.Email.ToLower() == user.Email.ToLower()))
+            {
+                ModelState.AddModelError("EmailError", "Email address already exists");
+                return View(user);
+            }
+            if (user.Phonenumber != null && accountRepository.Accounts.Any(u => u.Phonenumber.ToLower() == user.Phonenumber.ToLower()))
+            {
+                ModelState.AddModelError("PhonenumberError", "Phone Number already exists");
+                return View(user);
+            }
             if (ModelState.IsValid)
             {
                 char[] charsToTrim = { '*', ' ', '\'', '(', ')', '-' };
+
+                /*Accounts email = accountRepository.Accounts.FirstOrDefault(u => u.Email.ToLower() == user.Email.ToLower());
+                Accounts username = accountRepository.Accounts.FirstOrDefault(u => u.Username.ToLower() == user.Username.ToLower());
+                Accounts phone = accountRepository.Accounts.FirstOrDefault(u => u.Phonenumber.ToLower() == user.Phonenumber.ToLower());*/
+
+
+
+                //if (checkUsername == false && checkEmail == false && checkPhonenumber == false)
+                //{
                 accountRepository.Register(new Accounts
                 {
                     AccountId = accountRepository.GetID() + 1,
@@ -56,20 +82,22 @@ namespace BookLibraryApp.Controllers
                     ConfirmPassword = user.ConfirmPassword,
                     RoleId = 1
                 });
-                
+
                 /*Accounts repoUser = accountRepository.Login(user.Username, user.Email, user.Password);
-            var userClaims = new List<Claim>()
-            {
-                new Claim(ClaimTypes.Name, repoUser.Firstname),
-                new Claim(ClaimTypes.Email, repoUser.Email)
-            };
-            var grandmaIdentity = new ClaimsIdentity(userClaims, "User Identity");
-            var userPrinciple = new ClaimsPrincipal(new[] { grandmaIdentity });
-            HttpContext.SignInAsync(userPrinciple);*/
+        var userClaims = new List<Claim>()
+        {
+            new Claim(ClaimTypes.Name, repoUser.Firstname),
+            new Claim(ClaimTypes.Email, repoUser.Email)
+        };
+        var grandmaIdentity = new ClaimsIdentity(userClaims, "User Identity");
+        var userPrinciple = new ClaimsPrincipal(new[] { grandmaIdentity });
+
+        HttpContext.SignInAsync(userPrinciple);*/
 
                 return RedirectToAction("Index", "Home");
-            } else 
-                return View(user);
+                //}
+            }
+            return View(user);
         }
 
 

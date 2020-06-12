@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
@@ -27,7 +28,6 @@ namespace BookLibraryApp.Models
         }
 
         public int GetID() => _context.Accounts.ToArray().Length;
-
 
         /*public Accounts Login(string Username, string Password)
         {
