@@ -30,6 +30,8 @@ namespace BookLibraryApp.Controllers
         {
             string formatedPhonenumber;
             int userID = accountRepository.GetID() + 1;
+            if (accountRepository.Accounts.Any(u => u.AccountId == userID))
+                userID += 1;
             if (user.Username != null && accountRepository.Accounts.Any(u => u.Username.ToLower() == user.Username.ToLower()))
                 ModelState.AddModelError("Username", "Username address already exists");
             if (user.Email != null && accountRepository.Accounts.Any(u => u.Email.ToLower() == user.Email.ToLower()))

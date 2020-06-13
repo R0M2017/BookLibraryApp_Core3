@@ -10,6 +10,7 @@ namespace BookLibraryApp.Models
     {
         IEnumerable<Books> Books { get; }
         PagedList<Books> GetBooks(QueryOptions options);
+        //PagedList<Books> GetLibraryBooks(QueryOptions options, int bookid);
         Books GetBook(int bookid);
         void AddBook(Books book);
         void UpdateBook(Books book);

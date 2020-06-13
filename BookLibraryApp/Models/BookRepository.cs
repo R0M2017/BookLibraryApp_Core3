@@ -11,9 +11,7 @@ namespace BookLibraryApp.Models
     public class BookRepository : IRepository
     {
         private BookLibraryContext _context;
-
         public BookRepository(BookLibraryContext context) => _context = context;
-
         public IEnumerable<Books> Books => _context.Books.ToArray();
 
         public PagedList<Books> GetBooks(QueryOptions options)
@@ -25,6 +23,11 @@ namespace BookLibraryApp.Models
             }*/
             return new PagedList<Books>(_context.Books, options);
         }
+
+        /*public PagedList<Books> GetLibraryBooks(QueryOptions options, int bookid)
+        {
+            return new PagedList<Books>(_context.Books.Where(b => b.BookId == bookid), options);
+        }*/
 
         public Books GetBook(int bookid) => _context.Books.First(b => b.BookId == bookid);
 

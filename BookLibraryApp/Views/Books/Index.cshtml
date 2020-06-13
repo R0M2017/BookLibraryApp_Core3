@@ -199,7 +199,7 @@
                 {
                     <div class="row justify-content-center">
                         <br />
-                        <form asp-action="AddBook" method="post">
+                        @*<form asp-action="AddBook" method="post">
                             <div class="card m-2" style="width: 16rem;">
                                 <div class="card-img-top bg-warning">
                                     Small Image<input name="ImageUrlS" class="form-control" />
@@ -229,7 +229,7 @@
                                     </li>
                                 </ul>
                             </div>
-                        </form>
+                        </form>*@
                         @foreach (Books b in Model)
                         {
                             <br />
@@ -250,15 +250,31 @@
                                     <li class="list-group-item"><b>Year Published: </b>@b.YearOfPublication</li>
                                     <li class="list-group-item"><b>ISBN: </b>@b.Isbn</li>
                                     <li class="list-group-item">
-                                        <form asp-action="Delete" method="post">
-                                            <a asp-action="UpdateBook" asp-route-bookid="@b.BookId" class="btn btn-outline-primary">
-                                                Edit
-                                            </a>
-                                            <input type="hidden" name="bookid" value="@b.BookId" />
-                                            <button type="submit" class="btn btn-outline-danger">
-                                                Delete
-                                            </button>
-                                        </form>
+
+
+
+                                        @if (User.Identity.IsAuthenticated)
+                                        {
+                                            <form asp-controller="Library" asp-action="AddToLibrary">
+                                                <input type="text" name="bookid" value="@b.BookId" hidden />
+                                                <div class="form-group">
+                                                    <input type="submit" value="Add Book" class="btn btn-default btn-primary" />
+                                                </div>
+                                            </form>
+
+                                            @*@await Html.PartialAsync("_AddToLibraryPartial", new Books())*@
+
+                                        }
+
+                                        @*<form asp-action="Delete" method="post">
+            <a asp-action="UpdateBook" asp-route-bookid="@b.BookId" class="btn btn-outline-primary">
+                Edit
+            </a>
+            <input type="hidden" name="bookid" value="@b.BookId" />
+            <button type="submit" class="btn btn-outline-danger">
+                Delete
+            </button>
+        </form>*@
                                     </li>
                                 </ul>
                                 <!--       <div class="card-body">

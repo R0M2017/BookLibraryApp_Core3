@@ -38,53 +38,31 @@ namespace BookLibraryApp
                 });
             services.AddTransient<IRepository, BookRepository>();
             services.AddTransient<IAccountRepository, AccountRepository>();
+            services.AddTransient<ILibraryRepository, LibraryRepository>();
             services.AddDbContext<BookLibraryContext>(options => options
                 .UseMySql("server=localhost;port=3306;user=root;password=LOTOS123l;database=booklibrarydatabase;", mySqlOptions => mySqlOptions
                     .ServerVersion("8.0.19-mysql")));
-
             services.AddControllersWithViews();
             services.AddRazorPages();
-
-            /*services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<BookLibraryContext>();*/
-
-            // identity
-            /*services.AddDbContext<BookLibraryAppIdentityContext>(options =>
-            options.UseSqlServer(
-                Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<BookLibraryAppIdentityUser>(options =>
-                                                      options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<BookLibraryAppIdentityContext>();*/
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
-            {
                 app.UseDeveloperExceptionPage();
-            } 
             else
             {
                 app.UseExceptionHandler("/Error");
                 app.UseStatusCodePages();
                 app.UseHsts();
             }  
-            
             app.UseStaticFiles();
             app.UseRouting();
-
             app.UseAuthentication();
             app.UseAuthorization();
-            app.UseCookiePolicy(new CookiePolicyOptions
-            {
-                MinimumSameSitePolicy = SameSiteMode.Strict,
-            });
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
-            });
+            app.UseCookiePolicy(new CookiePolicyOptions { MinimumSameSitePolicy = SameSiteMode.Strict });
+            app.UseEndpoints(endpoints => endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}"));
         }
     }
 }

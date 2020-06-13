@@ -1,0 +1,8 @@
+﻿@model Books
+
+    <form asp-controller="Library" asp-action="AddToLibrary">
+        <input asp-for="BookId" value="@Model.BookId" hidden />
+        <div class="form-group">
+            <input type="submit" value="Add Book" class="btn btn-default btn-primary" />
+        </div>
+    </form>
