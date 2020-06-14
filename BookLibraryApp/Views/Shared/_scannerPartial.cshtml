@@ -47,16 +47,16 @@
                 <label class="col-form-label">ISBN Search</label>
             </div>
             <div class="col-3">
-                <select form="pageform" name="options.searchpropertyname"
+                <select form="pageform" name="options.searchIsbnname"
                         class="form-control" hidden>
-                    <option value="@s" selected="@(Model.Options.SearchPropertyName == s)">
+                    <option value="@s" selected="@(Model.Options.SearchIsbnName == s)">
                         @(s.IndexOf('.') == -1 ? s : s.Substring(0, s.IndexOf('.')))
                     </option>
                 </select>
             </div>
             <div class="col">
-                <input form="pageform" class="form-control" name="options.searchterm" id="options.searchterm"
-                       value="@Model.Options.SearchTerm" />
+                <input form="pageform" class="form-control" name="options.searchisbnterm" id="options.searchisbn"
+                       value="@Model.Options.SearchIsbnTerm" />
             </div>
             <div class="col-1 text-right">
                 <button form="pageform" class="btn btn-secondary" type="submit">
@@ -167,7 +167,7 @@
                                 var modeISBN = mode(scannerISBN);
                                 console.log("ISBN: " + modeISBN);
                                 //$('#options.isbn').val(modeISBN);
-                                document.getElementById("options.searchterm").value = modeISBN;
+                                document.getElementById("options.searchisbn").value = modeISBN;
                                 /*var isbnpar = document.getElementById("options.isbn");
                                 var text = document.createTextNode(modeISBN);
                                 isbnpar.appendChild(text);*/

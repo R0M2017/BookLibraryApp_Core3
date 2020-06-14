@@ -34,7 +34,9 @@
         </div>
         <br />
         <hr />
-        <div class="bg-dark">
+    </div>
+    <div class="row bg-dark m-2 p-2">
+        <div>
             <br />
             <br />
             @if (ViewBag.UpdateAll != true)
@@ -52,37 +54,37 @@
                 {
                     <div class="row justify-content-center">
                         <br />
-                        @*<form asp-action="AddBook" method="post">
-                            <div class="card m-2" style="width: 16rem;">
-                                <div class="card-img-top bg-warning">
-                                    Small Image<input name="ImageUrlS" class="form-control" />
-                                    Medium Image<input name="ImageUrlM" class="form-control" />
-                                    Large Image<input name="ImageUrlL" class="form-control" />
+                        <form asp-action="AddBook" method="post">
+                                <div class="card m-2" style="width: 16rem;">
+                                    <div class="card-img-top bg-warning">
+                                        Small Image<input name="ImageUrlS" class="form-control" />
+                                        Medium Image<input name="ImageUrlM" class="form-control" />
+                                        Large Image<input name="ImageUrlL" class="form-control" />
+                                    </div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">
+                                            <b>Title: </b><input name="BookTitle" class="form-control" />
+                                        </h5>
+                                        <p class="card-text">
+                                            <b>Author: </b><input name="BookAuthor" class="form-control" />
+                                        </p>
+                                    </div>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">
+                                            <b>Publisher: </b><input name="Publisher" class="form-control" />
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b>Year Published: </b><input name="YearOfPublication" class="form-control" />
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b>ISBN: </b><input name="Isbn" class="form-control" />
+                                        </li>
+                                        <li class="list-group-item">
+                                            <button type="submit" class="btn btn-primary">Add</button>
+                                        </li>
+                                    </ul>
                                 </div>
-                                <div class="card-body">
-                                    <h5 class="card-title">
-                                        <b>Title: </b><input name="BookTitle" class="form-control" />
-                                    </h5>
-                                    <p class="card-text">
-                                        <b>Author: </b><input name="BookAuthor" class="form-control" />
-                                    </p>
-                                </div>
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">
-                                        <b>Publisher: </b><input name="Publisher" class="form-control" />
-                                    </li>
-                                    <li class="list-group-item">
-                                        <b>Year Published: </b><input name="YearOfPublication" class="form-control" />
-                                    </li>
-                                    <li class="list-group-item">
-                                        <b>ISBN: </b><input name="Isbn" class="form-control" />
-                                    </li>
-                                    <li class="list-group-item">
-                                        <button type="submit" class="btn btn-primary">Add</button>
-                                    </li>
-                                </ul>
-                            </div>
-                        </form>*@
+                            </form>
                         @foreach (Books b in Model)
                         {
                             <br />
@@ -120,14 +122,14 @@
                                         }
 
                                         @*<form asp-action="Delete" method="post">
-            <a asp-action="UpdateBook" asp-route-bookid="@b.BookId" class="btn btn-outline-primary">
-                Edit
-            </a>
-            <input type="hidden" name="bookid" value="@b.BookId" />
-            <button type="submit" class="btn btn-outline-danger">
-                Delete
-            </button>
-        </form>*@
+                                                <a asp-action="UpdateBook" asp-route-bookid="@b.BookId" class="btn btn-outline-primary">
+                                                    Edit
+                                                </a>
+                                                <input type="hidden" name="bookid" value="@b.BookId" />
+                                                <button type="submit" class="btn btn-outline-danger">
+                                                    Delete
+                                                </button>
+                                            </form>*@
                                     </li>
                                 </ul>
                                 <!--       <div class="card-body">
@@ -149,12 +151,12 @@
             <br />
             <br />
         </div>
-        <hr />
-        <br />
-        <div class="text-center">
-            <!--<partial name="Pages" model="Model" />-->
-            @await Html.PartialAsync("Pages", Model)
-        </div>
-        <br />
     </div>
+    <hr />
+    <br />
+    <div class="text-center">
+        <!--<partial name="Pages" model="Model" />-->
+        @await Html.PartialAsync("Pages", Model)
+    </div>
+    <br />
 </div>
