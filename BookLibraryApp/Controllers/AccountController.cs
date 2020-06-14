@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Configuration;
 using System.Diagnostics;
 using System.Linq;
@@ -59,18 +60,6 @@ namespace BookLibraryApp.Controllers
                     ConfirmPassword = user.ConfirmPassword,
                     RoleId = 1
                 });
-
-                /*Accounts repoUser = accountRepository.Login(user.Username, user.Email, user.Password);
-        var userClaims = new List<Claim>()
-        {
-            new Claim(ClaimTypes.Name, repoUser.Firstname),
-            new Claim(ClaimTypes.Email, repoUser.Email)
-        };
-        var grandmaIdentity = new ClaimsIdentity(userClaims, "User Identity");
-        var userPrinciple = new ClaimsPrincipal(new[] { grandmaIdentity });
-
-        HttpContext.SignInAsync(userPrinciple);*/
-
                 return RedirectToAction("RegisterVertification", "Account", new { accountID = userID });
             }
             return View(user);
@@ -146,6 +135,15 @@ namespace BookLibraryApp.Controllers
             if (User.Identity.IsAuthenticated)
                 HttpContext.SignOutAsync();
             return RedirectToAction("Index", "Home");
+        }
+
+        [AttributeUsage(AttributeTargets.Property, AllowMultiple = false, Inherited = false)]
+        public class MustBeTrueAttribute : ValidationAttribute
+        {
+            public override bool IsValid(object value)
+            {
+                return value != null && value is bool && (bool)value;
+            }
         }
 
     }

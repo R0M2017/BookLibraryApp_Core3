@@ -11,22 +11,11 @@ namespace BookLibraryApp.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
-        public IActionResult About()
-        {
-            return View();
-        }
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-        public IActionResult Contact()
-        {
-            return View();
-        }
+        public IActionResult Index() => View();
+        public IActionResult About() => View();
+        public IActionResult Privacy() => View();
+        public IActionResult Contact() => View();
+        public IActionResult TermsAndUse() => View();
 /*
         [Authorize]
         public ActionResult Users()

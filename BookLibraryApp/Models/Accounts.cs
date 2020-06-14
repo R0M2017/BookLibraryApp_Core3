@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Xunit.Sdk;
+using static BookLibraryApp.Controllers.AccountController;
 
 namespace BookLibraryApp.Models
 {
@@ -36,8 +38,13 @@ namespace BookLibraryApp.Models
         //[StringLength(8, ErrorMessage = "Password must be 8 characters long")]
         public string Password { get; set; }
         [NotMapped]
+        [Required]
         [Compare("Password", ErrorMessage = "Confirm Password must match Password")]
         public string ConfirmPassword { get; set; }
+        [NotMapped]
+        [Required]
+        [MustBeTrue(ErrorMessage = "You must accept the terms and conditions")]
+        public bool CheckTerms { get; set; }
         public int RoleId { get; set; }
 
         public virtual Roles Role { get; set; }
