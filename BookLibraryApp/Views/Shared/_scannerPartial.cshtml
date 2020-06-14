@@ -1,74 +1,33 @@
-﻿@* Partial View for Searching Books *@
-
-@{ 
+﻿
+@{
     var s = "Isbn";
 }
 
-    <div class="container-fluid mt-2">
-
-
-        @*
-
-         <div class="row m-1">
-            <div class="col"></div>
-            <div class="col-1">
-                <label class="col-form-label">Search</label>
-            </div>
-            <div class="col-3">
-                <select form="pageform" name="options.searchpropertyname"
-                        class="form-control">
-                    @foreach (string s in ViewBag.searches as string[])
-                    {
-                        <option value="@s" selected="@(Model.Options.SearchPropertyName == s)">
-                            @(s.IndexOf('.') == -1 ? s : s.Substring(0, s.IndexOf('.')))
-                        </option>
-                    }
-                </select>
-            </div>
-            <div class="col">
-                <input form="pageform" class="form-control" name="options.searchterm"
-                       value="@Model.Options.SearchTerm" />
-            </div>
-            <div class="col-1 text-right">
-                <button form="pageform" class="btn btn-secondary" type="submit">
-                    Search
-                </button>
-            </div>
-            <div class="col"></div>
+<div class="container-fluid mt-2">
+    <div class="row">
+        <div class="col-1">
+            <label class="col-form-label">ISBN Search</label>
+            <select form="pageform" name="options.searchIsbnname"
+                    class="form-control" hidden>
+                <option value="@s" selected="@(Model.Options.SearchIsbnName == s)">
+                    @(s.IndexOf('.') == -1 ? s : s.Substring(0, s.IndexOf('.')))
+                </option>
+            </select>
         </div>
-
-        *@
-
-
-
-        <div class="row">
-            <div class="col"></div>
-            <div class="col-1">
-                <label class="col-form-label">ISBN Search</label>
-            </div>
-            <div class="col-3">
-                <select form="pageform" name="options.searchIsbnname"
-                        class="form-control" hidden>
-                    <option value="@s" selected="@(Model.Options.SearchIsbnName == s)">
-                        @(s.IndexOf('.') == -1 ? s : s.Substring(0, s.IndexOf('.')))
-                    </option>
-                </select>
-            </div>
-            <div class="col">
-                <input form="pageform" class="form-control" name="options.searchisbnterm" id="options.searchisbn"
-                       value="@Model.Options.SearchIsbnTerm" />
-            </div>
-            <div class="col-1 text-right">
-                <button form="pageform" class="btn btn-secondary" type="submit">
-                    Search ISBN
-                </button>
-            </div>
+        <div class="col-3">
+            <input form="pageform" class="form-control" name="options.searchisbnterm" id="options.searchisbn"
+                   value="@Model.Options.SearchIsbnTerm" />
         </div>
-        <div class="row">
-            <div class="col"></div>
-            <div class="col-1"></div>
-            <div class="col-3"></div>
-            <div class="col">
+        <div class="col-2 text-right">
+            <button form="pageform" class="btn btn-secondary" type="submit">
+                Search ISBN
+            </button>
+        </div>
+        <div class="col-6">
+            <div class="row justify-content-center">
+                <input type="button" id="btn" class="btn btn-secondary mb-2" value="Start/Stop the scanner" />
+            </div>
+            <div class="row justify-content-center">
                 <style>
                     /* In order to place the tracking correctly */
                     canvas.drawing, canvas.drawingBuffer {
@@ -80,20 +39,12 @@
 
                 <!-- Div to show the scanner -->
                 <div id="scanner-container"></div>
-                <input type="button" id="btn" value="Start/Stop the scanner" />
 
                 <!-- Include the image-diff library -->
                 <script src="~/lib/quagga/quagga.min.js"></script>
 
                 <!-- Include JSON file -->
                 <script type="text/javascript" src="~/json/isbnStorage.json"></script>
-
-
-
-                @*<p id="options.isbn"></p>*@
-                @*<input id="options.isbn" type="text" />
-                <input id="options.submit" type="submit" value="Get ISBN" />*@
-
 
                 <script>
                     var _scannerIsRunning = false;
@@ -203,6 +154,6 @@
                     }
                 </script>
             </div>
-            <div class="col-1"></div>
         </div>
     </div>
+</div>
