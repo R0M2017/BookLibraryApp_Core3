@@ -8,19 +8,17 @@
 
 
     var random_book1_color = colors[Math.floor(Math.random() * colors.length)].hex;
-    //var book1 = document.getElementsByClassName('book-1');
-    var book1 = document.getElementById('book-1');
-    book1.style.backgroundColor = random_book1_color;
-
     var random_book2_color = colors[Math.floor(Math.random() * colors.length)].hex;
-    //var book2 = document.getElementsByClassName('book-2');
-    var book2 = document.getElementById('book-2');
-    book2.style.backgroundColor = random_book2_color;
-
     var random_book3_color = colors[Math.floor(Math.random() * colors.length)].hex;
-    //var book3 = document.getElementsByClassName('book-3');
+    var book1 = document.getElementById('book-1');
+    var book2 = document.getElementById('book-2');
     var book3 = document.getElementById('book-3');
-    book3.style.backgroundColor = random_book3_color;
+
+    if (book1 != null && book2 != null && book3 != null) {
+        book1.style.backgroundColor = random_book1_color;
+        book2.style.backgroundColor = random_book2_color;
+        book3.style.backgroundColor = random_book3_color;
+    }
 
     /*for (var i = 0; i < book1.length; i++) {
         //var colors = ['#ff0000', '#00ff00', '#0000ff'];

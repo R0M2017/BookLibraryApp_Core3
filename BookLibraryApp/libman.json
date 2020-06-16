@@ -2,11 +2,11 @@
   "version": "1.0",
   "defaultProvider": "cdnjs",
   "libraries": [
-    {
-      "library": "jquery@3.5.0",
-      "files": [],
-      "destination": "wwwroot/lib/jquery/"
-    },
+    //{
+    //  "library": "jquery@3.5.1",
+    //  "files": [],
+    //  "destination": "wwwroot/lib/jquery/"
+    //},
     {
       "library": "font-awesome@5.13.0",
       "files": [],
@@ -31,6 +31,12 @@
       "library": "inputmask@4.0.9",
       "files": [],
       "destination": "wwwroot/lib/inputmask/"
+    },
+    {
+      "provider": "unpkg",
+      "library": "jquery@3.5.1",
+      "files": [],
+      "destination": "wwwroot/lib/jquery/"
     },
     {
       "provider": "unpkg",

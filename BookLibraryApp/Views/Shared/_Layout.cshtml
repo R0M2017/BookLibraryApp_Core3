@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="~/css/booklibrarystyle.css" />
     <link rel="stylesheet" href="~/css/booklibrarycontainer.css" />
 
-    <script src="~/lib/jquery/jquery.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/inputmask/inputmask/inputmask.min.js"></script>
     <script src="~/lib/inputmask/inputmask/jquery.inputmask.min.js"></script>
     <script src="~/lib/jqueryui/jquery-ui.js"></script>
@@ -27,12 +27,12 @@
 <body class="navbar-light bg-light">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">Book Library App</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#libraryNavbar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse" id="libraryNavbar">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
+                <li class="nav-item @Html.IsSelected(actions: "Index", controllers: "Home")">
                     <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item dropdown">

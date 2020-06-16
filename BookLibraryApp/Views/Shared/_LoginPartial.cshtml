@@ -4,22 +4,22 @@
 <ul class="navbar-nav">
     @if (User.Identity.IsAuthenticated)
     {
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-controller="Library" asp-action="Index" title="Manage">Hello @User.Identity.Name!</a>
+        <li class="nav-item  @Html.IsSelected(actions: "Index", controllers: "Library")">
+            <a class="nav-link" asp-controller="Library" asp-action="Index" title="Manage">Hello @User.Identity.Name!</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item  @Html.IsSelected(actions: "Logout", controllers: "Account")">
             <form class="form-inline" asp-controller="Account" asp-action="Logout">
-                <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+                <button type="submit" class="nav-link btn btn-link">Logout</button>
             </form>
         </li>
     }
     else
     {
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-controller="Account" asp-action="Register">Register</a>
+        <li class="nav-item  @Html.IsSelected(actions: "Register", controllers: "Account")">
+            <a class="nav-link" asp-controller="Account" asp-action="Register">Register</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-controller="Account" asp-action="Login">Login</a>
+        <li class="nav-item  @Html.IsSelected(actions: "Login", controllers: "Account")">
+            <a class="nav-link" asp-controller="Account" asp-action="Login">Login</a>
         </li>
     }
 </ul>
