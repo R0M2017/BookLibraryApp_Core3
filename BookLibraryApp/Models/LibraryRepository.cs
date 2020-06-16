@@ -25,7 +25,7 @@ namespace BookLibraryApp.Models
 
         public bool BookLibraryExists(int bookID, int accountID)
         {
-            if (_context.Library.Any(l => bookID == bookID && l.AccountId == accountID))
+            if (_context.Library.Any(l => l.BookId == bookID && l.AccountId == accountID))
                 return true;
             return false;
         }

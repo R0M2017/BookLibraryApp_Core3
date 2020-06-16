@@ -40,7 +40,8 @@ namespace BookLibraryApp
             services.AddTransient<IAccountRepository, AccountRepository>();
             services.AddTransient<ILibraryRepository, LibraryRepository>();
             services.AddDbContext<BookLibraryContext>(options => options
-                .UseMySql("server=localhost;port=3306;user=root;password=LOTOS123l;database=booklibrarydatabase;", mySqlOptions => mySqlOptions
+                .UseMySql("Server=MYSQL5016.site4now.net;Database=db_a63190_romanrs;Uid=a63190_romanrs;Pwd=LOTOS123l!"/*"server=localhost;port=3306;user=root;password=LOTOS123l;database=booklibrarydatabase;"*/, 
+                mySqlOptions => mySqlOptions
                     .ServerVersion("8.0.19-mysql")));
             services.AddControllersWithViews();
             services.AddRazorPages();
