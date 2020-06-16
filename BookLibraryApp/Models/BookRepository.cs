@@ -1,4 +1,5 @@
 ﻿using BookLibraryApp.Models.Pages;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using System;
@@ -13,15 +14,33 @@ namespace BookLibraryApp.Models
         private BookLibraryContext _context;
         public BookRepository(BookLibraryContext context) => _context = context;
         public IEnumerable<Books> Books => _context.Books.ToArray();
-
+        [TempData]
+        public string ViewState { get; set; }
+        [TempData]
+        public string ControllerState { get; set; }
         public PagedList<Books> GetBooks(QueryOptions options)
         {
-            /*IQueryable<Books> query = _context.Books.Include(b => b.Publisher);
+            /*
+            IQueryable<Books> query = _context.Books.Include(b => b.Publisher);
             if (publisher != -0)
-            {
-                // query = query.Where(b => b.Publisher == publisher);
-            }*/
+                query = query.Where(b => b.Publisher == publisher);
+                */
             return new PagedList<Books>(_context.Books, options);
+        }
+
+        public List<Books> GetTop10Books(Random rand)
+        {
+            int booksLength = _context.Books.Count();
+            List<Books> bookList = new List<Books>();
+            for (int i = 0; i < 12; i++)
+            {
+                int randomID = rand.Next(1, booksLength);
+                if (_context.Books.Any(b => b.BookId == randomID))
+                    bookList.Add(_context.Books.First(b => b.BookId == randomID));
+                else
+                    bookList.Add(_context.Books.First(b => b.BookId == rand.Next(1, booksLength)));
+            }
+            return bookList;
         }
 
         /*public PagedList<Books> GetLibraryBooks(QueryOptions options, int bookid)

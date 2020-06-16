@@ -7,7 +7,10 @@ using Microsoft.EntityFrameworkCore;
 using BookLibraryApp.Models;
 using BookLibraryApp.Models.Pages;
 using Nancy.Json;
-using BookLibraryApp.Models.data;
+using System.Net;
+using System.IO;
+using Newtonsoft.Json;
+using Json.Net;
 
 namespace BookLibraryApp.Controllers
 {
@@ -15,7 +18,10 @@ namespace BookLibraryApp.Controllers
     {
         private IRepository repository;
         public BooksController(IRepository repo) => repository = repo;
-        public IActionResult Index(QueryOptions options) => View(repository.GetBooks(options));
+        public IActionResult Index(QueryOptions options)
+        {
+            return View(repository.GetBooks(options));
+        }
         [HttpPost]
         public IActionResult AddBook(Books book)
         {
@@ -45,6 +51,33 @@ namespace BookLibraryApp.Controllers
         {
             repository.Delete(book);
             return RedirectToAction(nameof(Index));
+        }
+
+        public void IsbnDbApi()
+        {
+            const string WEBSERVICE_URL = "https://api2.isbndb.com/book/9781934759486";
+            try
+            {
+                var webRequest = WebRequest.Create(WEBSERVICE_URL);
+
+                if (webRequest != null)
+                {
+                    webRequest.Method = "GET";
+                    webRequest.ContentType = "application/json";
+                    webRequest.Headers["Authorization"] = "44174_37ec3ba969f1f505eb0f2d6ae51b079a";
+
+                    WebResponse wr = webRequest.GetResponseAsync().Result;
+                    Stream receiveStream = wr.GetResponseStream();
+                    StreamReader reader = new StreamReader(receiveStream);
+
+                    string content = reader.ReadToEnd();
+                    Console.WriteLine(content);
+                }
+            } 
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
         }
         
     }

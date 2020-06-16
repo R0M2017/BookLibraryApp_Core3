@@ -3,7 +3,16 @@
 @{
     ViewData["Title"] = "Index";
     Layout = "_Layout";
+    TempData["ControllerState"] = "Library";
+    TempData["ViewState"] = "Index";
 }
+
+    <style>
+        .cardSize {
+            width: 16rem;
+            height: 50rem;
+        }
+    </style>
 
 <h1>Library</h1>
 <br />
@@ -33,8 +42,8 @@
                 @foreach (Books b in Model)
                 {
                     <br />
-                    <div class="card m-2" style="width: 16rem;">
-                        <img class="card-img-top bg-warning"
+                    <div class="card m-2 cardSize">
+                        <img class="card-img-top cardImg"
                              srcset="@b.ImageUrlS 200w,
                             @b.ImageUrlM 400w,
                             @b.ImageUrlL 600w"
@@ -49,6 +58,14 @@
                             <li class="list-group-item"><b>Publisher: </b>@b.Publisher</li>
                             <li class="list-group-item"><b>Year Published: </b>@b.YearOfPublication</li>
                             <li class="list-group-item"><b>ISBN: </b>@b.Isbn</li>
+                            <li class="list-group-item">
+                                    <form asp-controller="Library" asp-action="RemoveFromLibrary">
+                                        <input type="text" name="bookid" value="@b.BookId" hidden />
+                                        <div class="form-group">
+                                            <input type="submit" value="Remove Book" class="btn btn-default btn-danger" />
+                                        </div>
+                                    </form>
+                            </li>
                         </ul>
                     </div>
                     <br />

@@ -41,6 +41,10 @@ namespace BookLibraryApp.Controllers
             if (User.Identity.IsAuthenticated && accountRepository.Accounts.Any(u => u.Username == User.Identity.Name))
             {
                 Accounts authenticatedAccount = accountRepository.Accounts.First(u => u.Username == User.Identity.Name);
+                if (libraryRepository.BookLibraryExists(bookid, authenticatedAccount.AccountId))
+                {
+                    return RedirectToAction(TempData["ViewState"].ToString(), TempData["ControllerState"].ToString());
+                }
                 int libraryid = libraryRepository.GetID() + 1;
                 if (libraryRepository.Library.Any(l => l.LibraryId == libraryid))
                     libraryid += 1;
@@ -54,6 +58,17 @@ namespace BookLibraryApp.Controllers
                 return RedirectToAction("Index", "Library");
             }
             return RedirectToAction("Index", "Home");
+        }
+
+        [HttpPost]
+        public IActionResult RemoveFromLibrary(int bookid)
+        {
+            if (User.Identity.IsAuthenticated && accountRepository.Accounts.Any(u => u.Username == User.Identity.Name))
+            {
+                Accounts authenticatedAccount = accountRepository.Accounts.First(u => u.Username == User.Identity.Name);
+                libraryRepository.RemoveLibrary(bookid, authenticatedAccount.AccountId);
+            }
+            return RedirectToAction("Index", "Library");
         }
     }
 }

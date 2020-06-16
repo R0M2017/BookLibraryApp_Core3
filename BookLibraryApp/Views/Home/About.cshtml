@@ -2,12 +2,27 @@
 @{
     ViewData["Title"] = "About";
     Layout = "_Layout";
+    TempData["ControllerState"] = "Home";
+    TempData["ViewState"] = "About";
 }
 
 <br />
 <br />
 <div class="container shadow-sm p-3 mb-5 bg-white rounded">
-
+    Welcome to Book Library Application, your number one source for all things pertaining books. We're dedicated to giving 
+    you the very best books, with a focus on usability, performance, and quality.
+    <br /><br />
+    Founded in 2020 by Roman Roshchuk, Book Library Application has come a long way from its beginnings in Washington State. 
+    When Roman first started out, his passion for quality driven book library drove them to create a capstone so that Book 
+    Library Application can offer you the world's most advanced library. We now serve customers all over the world, and are 
+    thrilled that we're able to turn our passion into our own website.
+    <br /><br />
+    We hope you enjoy our products as much as we enjoy offering them to you. If you have any questions or comments, please 
+    don't hesitate to <a asp-controller="Home" asp-action="Contact">contact us</a>.
+    <br /><br />
+    Sincerely,
+    <br />
+    Roman Roshchuk
 </div>
 <br />
 <br />

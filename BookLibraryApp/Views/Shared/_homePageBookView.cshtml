@@ -1,0 +1,142 @@
+﻿<style>
+    .cardSize {
+        width: 16rem;
+        height: 50rem;
+    }
+</style>
+
+<div class="rounded bg-dark p-2">
+    <div id="bookCarousel" class="carousel slide" data-ride="carousel">
+
+        <ol class="carousel-indicators">
+            <li data-target="#bookCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#bookCarousel" data-slide-to="1"></li>
+            <li data-target="#bookCarousel" data-slide-to="2"></li>
+        </ol>
+
+        <div class="carousel-inner p-2 pr-4">
+            <div class="carousel-item active">
+                <div class="row justify-content-center">
+                    @for (int i = 0; i < 4; i++)
+                    {
+                        <div class="col-3">
+                            <br />
+                            <div class="card cardSize">
+                                <img class="card-img-top cardImg"
+                                     srcset="@Model[i].ImageUrlS 200w,
+                            @Model[i].ImageUrlM 400w,
+                            @Model[i].ImageUrlL 600w"
+                                     sizes="(max-width: 600px) 200px, 400px, 600px"
+                                     src="@Model[i].ImageUrlS" alt="Book Image"
+                                     onerror="this.onerror = null; this.src = '~/img/NoPicture.jpg';">
+                                <div class="card-body">
+                                    <h5 class="card-title"><b>Title: </b>@Model[i].BookTitle</h5>
+                                    <p class="card-text"><b>Author: </b>@Model[i].BookAuthor</p>
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item"><b>Publisher: </b>@Model[i].Publisher</li>
+                                    <li class="list-group-item"><b>Year Published: </b>@Model[i].YearOfPublication</li>
+                                    <li class="list-group-item"><b>ISBN: </b>@Model[i].Isbn</li>
+                                    <li class="list-group-item">
+                                        @if (User.Identity.IsAuthenticated)
+                                        {
+                                            <form asp-controller="Library" asp-action="AddToLibrary">
+                                                <input type="text" name="bookid" value="@Model[i].BookId" hidden />
+                                                <div class="form-group">
+                                                    <input type="submit" value="Add Book" class="btn btn-default btn-success" />
+                                                </div>
+                                            </form>
+                                        }
+                                    </li>
+                                </ul>
+                            </div>
+                            <br />
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <div class="carousel-item">
+                <div class="row justify-content-center">
+                    @for (int i = 4; i < 8; i++)
+                    {
+                        <div class="col-3">
+                            <br />
+                            <div class="card cardSize">
+                                <img class="card-img-top cardImg"
+                                     srcset="@Model[i].ImageUrlS 200w,
+                            @Model[i].ImageUrlM 400w,
+                            @Model[i].ImageUrlL 600w"
+                                     sizes="(max-width: 600px) 200px, 400px, 600px"
+                                     src="@Model[i].ImageUrlS" alt="Book Image"
+                                     onerror="this.onerror = null; this.src = '~/img/NoPicture.jpg';">
+                                <div class="card-body">
+                                    <h5 class="card-title"><b>Title: </b>@Model[i].BookTitle</h5>
+                                    <p class="card-text"><b>Author: </b>@Model[i].BookAuthor</p>
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item"><b>Publisher: </b>@Model[i].Publisher</li>
+                                    <li class="list-group-item"><b>Year Published: </b>@Model[i].YearOfPublication</li>
+                                    <li class="list-group-item"><b>ISBN: </b>@Model[i].Isbn</li>
+                                    <li class="list-group-item">
+                                        @if (User.Identity.IsAuthenticated)
+                                        {
+                                            <form asp-controller="Library" asp-action="AddToLibrary">
+                                                <input type="text" name="bookid" value="@Model[i].BookId" hidden />
+                                                <div class="form-group">
+                                                    <input type="submit" value="Add Book" class="btn btn-default btn-primary" />
+                                                </div>
+                                            </form>
+                                        }
+                                    </li>
+                                </ul>
+                            </div>
+                            <br />
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <div class="carousel-item">
+                <div class="row justify-content-center">
+                    @for (int i = 8; i < 12; i++)
+                    {
+                        <div class="col-3">
+                            <br />
+                            <div class="card cardSize">
+                                <img class="card-img-top cardImg"
+                                     srcset="@Model[i].ImageUrlS 200w,
+                            @Model[i].ImageUrlM 400w,
+                            @Model[i].ImageUrlL 600w"
+                                     sizes="(max-width: 600px) 200px, 400px, 600px"
+                                     src="@Model[i].ImageUrlS" alt="Book Image"
+                                     onerror="this.onerror = null; this.src = '~/img/NoPicture.jpg';">
+                                <div class="card-body">
+                                    <h5 class="card-title"><b>Title: </b>@Model[i].BookTitle</h5>
+                                    <p class="card-text"><b>Author: </b>@Model[i].BookAuthor</p>
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item"><b>Publisher: </b>@Model[i].Publisher</li>
+                                    <li class="list-group-item"><b>Year Published: </b>@Model[i].YearOfPublication</li>
+                                    <li class="list-group-item"><b>ISBN: </b>@Model[i].Isbn</li>
+                                    <li class="list-group-item">
+                                        @if (User.Identity.IsAuthenticated)
+                                        {
+                                            <form asp-controller="Library" asp-action="AddToLibrary">
+                                                <input type="text" name="bookid" value="@Model[i].BookId" hidden />
+                                                <div class="form-group">
+                                                    <input type="submit" value="Add Book" class="btn btn-default btn-primary" />
+                                                </div>
+                                            </form>
+                                        }
+                                    </li>
+                                </ul>
+                            </div>
+                            <br />
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

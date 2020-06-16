@@ -12,7 +12,8 @@ namespace BookLibraryApp.Models
         PagedList<Library> GetLibraries(QueryOptions options, int accountid);
         Library GetLibrary(int libraryid);
         int GetID();
+        bool BookLibraryExists(int bookID, int accountID);
         void AddLibrary(Library library);
-        void RemoveLibrary(Library library);
+        void RemoveLibrary(int bookID, int accountID);
     }
 }

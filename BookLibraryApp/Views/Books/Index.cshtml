@@ -3,15 +3,22 @@
 @{
     ViewData["Title"] = "Index";
     Layout = "_Layout";
+    TempData["ControllerState"] = "Books";
+    TempData["ViewState"] = "Index";
 }
 
+<style>
+    .cardSize {
+        width: 16rem;
+    }
+</style>
 <br />
 <div class="container-fluid">
     <div class="row">
         <div class="col-2">
             <div class="row">
                 <div class="col-6">
-                    <button class="btn btn-secondary" asp-controller="Home" asp-action="Index">< Home</button>
+                    <a class="btn btn-secondary" asp-controller="Home" asp-action="Index">< Home</a>
                 </div>
             </div>
         </div>
@@ -49,9 +56,9 @@
                 {
                     <div class="row mb-2 pb-2 justify-content-center">
                         <br />
-                        <form asp-action="AddBook" method="post">
-                            <div class="card m-2" style="width: 16rem;">
-                                <div class="card-img-top bg-warning">
+                        @*<form asp-action="AddBook" method="post">
+                            <div class="card m-2 cardSize">
+                                <div class="card-img-top cardImg>
                                     Small Image<input name="ImageUrlS" class="form-control" />
                                     Medium Image<input name="ImageUrlM" class="form-control" />
                                     Large Image<input name="ImageUrlL" class="form-control" />
@@ -79,12 +86,12 @@
                                     </li>
                                 </ul>
                             </div>
-                        </form>
+                        </form>*@
                         @foreach (Books b in Model)
                         {
                             <br />
-                            <div class="card m-2" style="width: 16rem;">
-                                <img class="card-img-top bg-warning"
+                            <div class="card m-2 cardSize">
+                                <img class="card-img-top cardImg"
                                      srcset="@b.ImageUrlS 200w,
                             @b.ImageUrlM 400w,
                             @b.ImageUrlL 600w"
@@ -108,7 +115,7 @@
                                             <form asp-controller="Library" asp-action="AddToLibrary">
                                                 <input type="text" name="bookid" value="@b.BookId" hidden />
                                                 <div class="form-group">
-                                                    <input type="submit" value="Add Book" class="btn btn-default btn-primary" />
+                                                    <input type="submit" value="Add Book" class="btn btn-default btn-success" />
                                                 </div>
                                             </form>
 

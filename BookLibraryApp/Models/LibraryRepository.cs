@@ -23,14 +23,23 @@ namespace BookLibraryApp.Models
         public Library GetLibrary(int libraryid) => _context.Library.First(l => l.LibraryId == libraryid);
         public int GetID() => _context.Library.ToArray().Length;
 
+        public bool BookLibraryExists(int bookID, int accountID)
+        {
+            if (_context.Library.Any(l => bookID == bookID && l.AccountId == accountID))
+                return true;
+            return false;
+        }
+
+
         public void AddLibrary(Library library)
         {
             _context.Library.Add(library);
             _context.SaveChanges();
         }
 
-        public void RemoveLibrary(Library library)
+        public void RemoveLibrary(int bookID, int accountID)
         {
+            Library library = _context.Library.First(l => l.BookId == bookID && l.AccountId == accountID);
             _context.Library.Remove(library);
             _context.SaveChanges();
         } 

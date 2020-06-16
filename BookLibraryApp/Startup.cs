@@ -53,7 +53,7 @@ namespace BookLibraryApp
                 app.UseDeveloperExceptionPage();
             else
             {
-                app.UseExceptionHandler("/Error");
+                app.UseExceptionHandler("/Error/Index");
                 app.UseStatusCodePages();
                 app.UseHsts();
             }  
