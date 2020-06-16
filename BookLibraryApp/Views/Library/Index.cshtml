@@ -7,25 +7,39 @@
     TempData["ViewState"] = "Index";
 }
 
-    <style>
-        .cardSize {
-            width: 16rem;
-            height: 50rem;
-        }
-    </style>
-
-<h1>Library</h1>
+<style>
+    .cardSize {
+        width: 16rem;
+        height: 50rem;
+    }
+</style>
+<br />
 <br />
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-sm">
-            <div class="row p-2">
-                <div class="col-2">
-                    <a asp-controller="Home" asp-action="Index">Home</a>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <h2><a class="nav-link text-dark" asp-controller="Library" asp-action="Index" title="Manage">Hello @User.Identity.Name!</a></h2>
+        <div class="row">
+            <div class="col-2">
+                <div class="row">
+                    <div class="col-6">
+                        <a class="btn btn-secondary" asp-controller="Home" asp-action="Index">&lt;Home</a>
+                    </div>
+                    <div class="col-6">
+                        <form class="form-inline" asp-controller="Account" asp-action="Logout">
+                            <h4>
+                                <button type="submit" class="nav-link btn btn-danger">Logout</button>
+                            </h4>
+                        </form>
+                    </div>
                 </div>
             </div>
+            <div class="col-10">
+
+            </div>
         </div>
-    </div>
+    }
+    <br />
     <div class="bg-dark">
         <br />
         <br />
@@ -59,12 +73,12 @@
                             <li class="list-group-item"><b>Year Published: </b>@b.YearOfPublication</li>
                             <li class="list-group-item"><b>ISBN: </b>@b.Isbn</li>
                             <li class="list-group-item">
-                                    <form asp-controller="Library" asp-action="RemoveFromLibrary">
-                                        <input type="text" name="bookid" value="@b.BookId" hidden />
-                                        <div class="form-group">
-                                            <input type="submit" value="Remove Book" class="btn btn-default btn-danger" />
-                                        </div>
-                                    </form>
+                                <form asp-controller="Library" asp-action="RemoveFromLibrary">
+                                    <input type="text" name="bookid" value="@b.BookId" hidden />
+                                    <div class="form-group">
+                                        <input type="submit" value="Remove Book" class="btn btn-default btn-danger" />
+                                    </div>
+                                </form>
                             </li>
                         </ul>
                     </div>
