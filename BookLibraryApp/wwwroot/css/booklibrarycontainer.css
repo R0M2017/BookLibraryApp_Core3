@@ -12,10 +12,11 @@
     display: inline-block;
     writing-mode: vertical-lr;
     text-orientation: mixed;
+    position: relative;
 }
 
 .shelf {
-    height: 50%;
+    height: 50px;
     width: 200px;
     border: solid 1px;
     background-color: #ffc34d;
