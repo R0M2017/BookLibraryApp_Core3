@@ -5,15 +5,77 @@
     text-shadow: 2px 2px;
 }
 
-.book {
+.book-border {
+    border: 1px solid;
+    /*width: 800px;
+    height: 300px;
+    position: absolute;
+    right: 800px;
+    z-index: 9;
+    position: center;*/
+
+}
+
+.book-1 {
+    width: 500px;
+    height: 100px;
+    border: solid 1px;
+    display: inline-block;
+    position: relative;
+    opacity: 0.5;
+    writing-mode: horizontal-tb;
+    text-orientation: mixed;
+    top: 200px;
+    left: 100px;
+}
+
+.book-1:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.book-2 {
+    width: 100px;
+    height: 500px;
+    border: solid 1px;
+    display: inline-block;
+    position: static;
+    opacity: 0.5;
+    writing-mode: vertical-lr;
+    text-orientation: mixed;
+}
+
+.book-2:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.book-3 {
+    width: 500px;
+    height: 100px;
+    border: solid 1px;
+    display: inline-block;
+    position: relative;
+    opacity: 0.5;
+    writing-mode: horizontal-tb;
+    text-orientation: mixed;
+    bottom: 200px;
+    right: 100px;
+}
+
+.book-3:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+
+/*.book {
     height: 500px;
     width: 100px;
     border: solid 1px;
     display: inline-block;
-    writing-mode: vertical-lr;
-    text-orientation: mixed;
     position: relative;
-}
+    opacity: 0.5;
+}*/
 
 .shelf {
     height: 50px;

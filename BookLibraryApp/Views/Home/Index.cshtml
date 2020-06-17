@@ -11,41 +11,98 @@
     .bookfont {
         color: white;
     }
-    .bookfont:hover {
-        color: aqua;
-    }
+
+        .bookfont:hover {
+            color: aqua;
+        }
 </style>
 
 <div class="container">
-    <div class="jumbotron">
-        <div class="library">
-            <div class="book" id="book-1">
-                <a class="bookfont" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-            </div>
-            <div class="book" id="book-2">
-                <a class="bookfont" asp-area="" asp-controller="Books" asp-action="Index">Books</a>
-            </div>
-            @if (User.Identity.IsAuthenticated)
-            {
-                <div class="book" id="book-3">
-                    <form name="signoutForm" asp-controller="Account" asp-action="Logout">
-                        <a class="bookfont pt-2" href="#" onclick="document.signoutForm.submit(); return false;">Sign Out</a>
-                    </form>
+    <div class="jumbotron library p-4">
+        <br />
+        <div class="book-border" id="book-border">
+            <div class="d-flex align-items-center justify-content-center" style="height: 350px">
+                <div class="p-2 bd-highlight book-1" id="book-1">
+                    <a class="bookfont align-text-bottom" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                 </div>
-            }
-            else
-            {
-                <div class="book" id="book-3">
-                    <a class="bookfont" asp-controller="Account" asp-action="Register">New User</a>
+
+                <div class="p-2 bd-highlight book-2" id="book-2">
+                    <a class="bookfont text-center" asp-area="" asp-controller="Books" asp-action="Index">Books</a>
                 </div>
-            }
-            @*<div class="shelf"></div>*@
+                <div class="p-2 bd-highlight book-3" id="book-3">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <form name="signoutForm" asp-controller="Account" asp-action="Logout">
+                            <a class="bookfont" href="#" onclick="document.signoutForm.submit(); return false;">Sign Out</a>
+                        </form>
+                    }
+                    else
+                    {
+                        <a class="bookfont" asp-area="" asp-controller="Account" asp-action="Register">New User</a>
+                    }
+                </div>
+            </div>
         </div>
+        <br />
+        @*
+            <div class="library">
+                <div class="book" id="book-1">
+                    <a class="bookfont" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                </div>
+                <div class="book" id="book-2">
+                    <a class="bookfont" asp-area="" asp-controller="Books" asp-action="Index">Books</a>
+                </div>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <div class="book" id="book-3">
+                        <form name="signoutForm" asp-controller="Account" asp-action="Logout">
+                            <a class="bookfont pt-2" href="#" onclick="document.signoutForm.submit(); return false;">Sign Out</a>
+                        </form>
+                    </div>
+                }
+                else
+                {
+                    <div class="book col-4" id="book-3">
+                        <a class="bookfont" asp-controller="Account" asp-action="Register">New User</a>
+                    </div>
+                }
+                <div class="shelf"></div>
+            </div>
+        *@
     </div>
     <div>
         @await Html.PartialAsync("_homePageBookView", Model)
     </div>
-    <div class="jumbotron">
-        <img src="~/img/library_3.jpg" alt="libraryImage" class="img-fluid" />
+
+    <div class="rounded bg-light p-2">
+        <div id="navigationCarousel" class="carousel slide" data-ride="carousel">
+
+            <ol class="carousel-indicators">
+                <li data-target="#navigationCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#navigationCarousel" data-slide-to="1"></li>
+                <li data-target="#navigationCarousel" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner p-2 pr-4">
+
+                <div class="carousel-item">
+                    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home <span class="sr-only">(current)</span></a>
+                </div>
+
+                <div class="carousel-item active">
+                    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="About">About</a>
+                    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
+                </div>
+
+                <div class="carousel-item">
+                    <a class="nav-link" asp-area="" asp-controller="Books" asp-action="Index">Books</a>
+                </div>
+            </div>
+            </div>
+        </div>
     </div>
+
+    @*<div class="jumbotron">
+            <img src="~/img/library_3.jpg" alt="libraryImage" class="img-fluid" />
+        </div>*@
 </div>
