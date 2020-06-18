@@ -24,6 +24,7 @@ namespace BookLibraryApp.Controllers
         public IActionResult About() => View();
         public IActionResult Privacy() => View();
         public IActionResult Contact() => View();
+        public IActionResult Feedback() => View();
         public IActionResult TermsAndUse() => View();
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

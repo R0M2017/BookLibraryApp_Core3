@@ -18,6 +18,29 @@
 </style>
 
 <div class="container">
+    <br />
+    @if (User.Identity.IsAuthenticated)
+    {
+        <div class="row">
+            <div class="col-6 d-flex justify-content-center">
+                <a class="btn btn-outline-dark" asp-controller="Library" asp-action="Index" title="Manage">Hello @User.Identity.Name!</a>
+            </div>
+            <div class="col-6 d-flex justify-content-center">
+                <a class="btn btn-outline-info" asp-controller="Library" asp-action="Index" title="Manage">Go To Library</a>
+            </div>
+        </div>
+    }
+    else
+    {
+        <br />
+        <div class="d-flex justify-content-center">
+            <a target="_blank" href="https://www.SmarterASP.NET/index?r=romanrs500">
+                <img src="https://www.SmarterASP.NET/affiliate/728X90.gif" border="0">
+            </a>
+        </div>
+    }
+    <br />
+    <hr />
     <div class="jumbotron library p-4">
         <br />
         <div class="book-border" id="book-border">
@@ -44,65 +67,62 @@
             </div>
         </div>
         <br />
-        @*
-            <div class="library">
-                <div class="book" id="book-1">
-                    <a class="bookfont" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                </div>
-                <div class="book" id="book-2">
-                    <a class="bookfont" asp-area="" asp-controller="Books" asp-action="Index">Books</a>
-                </div>
-                @if (User.Identity.IsAuthenticated)
-                {
-                    <div class="book" id="book-3">
-                        <form name="signoutForm" asp-controller="Account" asp-action="Logout">
-                            <a class="bookfont pt-2" href="#" onclick="document.signoutForm.submit(); return false;">Sign Out</a>
-                        </form>
-                    </div>
-                }
-                else
-                {
-                    <div class="book col-4" id="book-3">
-                        <a class="bookfont" asp-controller="Account" asp-action="Register">New User</a>
-                    </div>
-                }
-                <div class="shelf"></div>
-            </div>
-        *@
     </div>
     <div>
         @await Html.PartialAsync("_homePageBookView", Model)
     </div>
-
-    <div class="rounded bg-light p-2">
+    <br />
+    <div class="rounded bg-dark p-2">
         <div id="navigationCarousel" class="carousel slide" data-ride="carousel">
 
-            <ol class="carousel-indicators">
-                <li data-target="#navigationCarousel" data-slide-to="0" class="active"></li>
-                <li data-target="#navigationCarousel" data-slide-to="1"></li>
-                <li data-target="#navigationCarousel" data-slide-to="2"></li>
-            </ol>
+            @*<ol class="carousel-indicators">
+                    <li data-target="#navigationCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#navigationCarousel" data-slide-to="1"></li>
+                    <li data-target="#navigationCarousel" data-slide-to="2"></li>
+                </ol>*@
             <div class="carousel-inner p-2 pr-4">
-
+                <br />
                 <div class="carousel-item">
-                    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home <span class="sr-only">(current)</span></a>
+                    <div class="row justify-content-center">
+                        <div class="col-12 d-flex justify-content-center">
+                            <a class="btn btn-outline-danger" asp-area="" asp-controller="Home" asp-action="Index">Home <span class="sr-only">(current)</span></a>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="carousel-item active">
-                    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="About">About</a>
-                    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
+                    <div class="row justify-content-center">
+                        <div class="col-4 d-flex justify-content-center">
+                            <a class="btn btn-outline-danger" asp-area="" asp-controller="Home" asp-action="About">About</a>
+                        </div>
+                        <div class="col-4 d-flex justify-content-center">
+                            <a class="btn btn-outline-danger" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </div>
+                        <div class="col-4 d-flex justify-content-center">
+                            <a class="btn btn-outline-danger" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="carousel-item">
-                    <a class="nav-link" asp-area="" asp-controller="Books" asp-action="Index">Books</a>
+                    <div class="row justify-content-center">
+                        <div class="col-12 d-flex justify-content-center">
+                            <a class="btn btn-outline-danger" asp-area="" asp-controller="Books" asp-action="Index">Books</a>
+                        </div>
+                    </div>
                 </div>
+                <br />
             </div>
-            </div>
+
+            <a class="carousel-control-prev" href="#navigationCarousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#navigationCarousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
         </div>
     </div>
-
-    @*<div class="jumbotron">
-            <img src="~/img/library_3.jpg" alt="libraryImage" class="img-fluid" />
-        </div>*@
+    <br /><br />
 </div>
