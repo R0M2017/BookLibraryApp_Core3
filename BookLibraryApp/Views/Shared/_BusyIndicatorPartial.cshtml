@@ -1,0 +1,19 @@
+﻿<link rel="stylesheet" href="~/css/loadingscreen.css" />
+
+<div class="loading">
+    Loading&#8230;
+</div>
+
+<script>
+    function displayBusyIndicator() {
+        $('.loading').show();
+    }
+
+    $(window).on('beforeunload', function () {
+        displayBusyIndicator();
+    });
+
+    $(document).on('submit', 'form', function () {
+        displayBusyIndicator();
+    });
+</script>

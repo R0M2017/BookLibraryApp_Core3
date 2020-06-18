@@ -50,7 +50,7 @@ namespace BookLibraryApp.Controllers
                     libraryid += 1;
                 libraryRepository.AddLibrary(new Library
                 {
-                    LibraryId = libraryid,
+                    /*LibraryId = libraryid,*/
                     AccountId = authenticatedAccount.AccountId,
                     BookId = bookid,
                     Datecreated = DateTime.Now

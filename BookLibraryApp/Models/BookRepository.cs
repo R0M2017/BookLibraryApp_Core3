@@ -19,6 +19,8 @@ namespace BookLibraryApp.Models
         [TempData]
         public string ControllerState { get; set; }
         [TempData]
+        public string BookID { get; set; }
+        [TempData]
         public string ISBN { get; set; }
         public PagedList<Books> GetBooks(QueryOptions options)
         {

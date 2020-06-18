@@ -48,7 +48,7 @@ namespace BookLibraryApp.Controllers
                 formatedPhonenumber = Regex.Replace(user.Phonenumber, @"[^0-9a-zA-Z]+", "");
                 accountRepository.Register(new Accounts
                 {
-                    AccountId = userID,
+                    /*AccountId = userID,*/
                     Username = user.Username,
                     Email = user.Email,
                     Phonenumber = formatedPhonenumber,

@@ -53,7 +53,7 @@ namespace BookLibraryApp.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        public void IsbnDbApi()
+       /* public void IsbnDbApi()
         {
             const string WEBSERVICE_URL = "https://api2.isbndb.com/book/9781934759486";
             try
@@ -78,7 +78,7 @@ namespace BookLibraryApp.Controllers
             {
                 Console.WriteLine(ex.ToString());
             }
-        }
+        }*/
         
     }
 }

@@ -1,4 +1,5 @@
 ﻿using BookLibraryApp.Models.Pages;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,7 @@ namespace BookLibraryApp.Models
 {
     public class LibraryRepository : ILibraryRepository
     {
+
         private BookLibraryContext _context;
         public LibraryRepository(BookLibraryContext context) => _context = context;
         public IEnumerable<Library> Library => _context.Library.ToArray();
@@ -16,10 +18,10 @@ namespace BookLibraryApp.Models
             return new PagedList<Library>(_context, _context.Library.Where(l => l.AccountId == accountid), options);
         }
 
-/*        public PagedList<Library> GetBookLibraries(QueryOptions options)
-        {
+        /*        public PagedList<Library> GetBookLibraries(QueryOptions options)
+                {
 
-        }*/
+                }*/
         public Library GetLibrary(int libraryid) => _context.Library.First(l => l.LibraryId == libraryid);
         public int GetID() => _context.Library.ToArray().Length;
 

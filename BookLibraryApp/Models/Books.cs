@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BookLibraryApp.Models
 {
@@ -10,6 +11,7 @@ namespace BookLibraryApp.Models
             Library = new HashSet<Library>();
         }
 
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int BookId { get; set; }
         public string Isbn { get; set; }
         public string BookTitle { get; set; }

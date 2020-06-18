@@ -15,6 +15,7 @@ namespace BookLibraryApp.Models
             Library = new HashSet<Library>();
         }
 
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int AccountId { get; set; }
         [Required]
         [Display(Name = "Username")]

@@ -55,25 +55,31 @@ namespace BookLibraryApp.Models.Pages
             var lambda = Expression.Lambda<Func<T, bool>>(body, parameter);
             if (!query.Any(lambda))
             {
+                if (_context.Books.Any(b => b.Isbn == searchisbnTerm))
+                    return query.Where(lambda);
                 int bookID = _context.Books.ToArray().Length + 1;
                 if (_context.Books.Any(b => b.BookId == bookID))
                     bookID += 1;
                 book bookModel = IsbnDbApi(searchisbnTerm);
                 bookDetails bookInfo = bookModel.Book;
-                _context.Books.Add(new Books 
+                if (bookInfo != null)
                 {
-                    BookId = bookID,
-                    Isbn = bookInfo.isbn13,
-                    BookTitle = bookInfo.title,
-                    BookAuthor = bookInfo.authors[0],
-                    YearOfPublication = Convert.ToUInt32(bookInfo.date_published),
-                    Publisher = bookInfo.publisher,
-                    ImageUrlS = bookInfo.image,
-                    ImageUrlM = bookInfo.image,
-                    ImageUrlL = bookInfo.image,
-                });
-                _context.SaveChanges();
-                return query.Where(lambda);
+                    _context.Books.Add(new Books
+                    {
+                        /*BookId = bookID,*/
+                        Isbn = bookInfo.isbn13,
+                        BookTitle = bookInfo.title,
+                        BookAuthor = bookInfo.authors[0],
+                        YearOfPublication = Convert.ToUInt32(bookInfo.date_published),
+                        Publisher = bookInfo.publisher,
+                        ImageUrlS = bookInfo.image,
+                        ImageUrlM = bookInfo.image,
+                        ImageUrlL = bookInfo.image,
+                    });
+                    _context.SaveChanges();
+                    return query.Where(lambda);
+                }
+                return query;
             }
             return query.Where(lambda);
         }
@@ -86,7 +92,7 @@ namespace BookLibraryApp.Models.Pages
             try
             {
                 var webRequest = WebRequest.Create(WEBSERVICE_URL);
-                
+
                 if (webRequest != null)
                 {
                     webRequest.Method = "GET";
@@ -99,7 +105,7 @@ namespace BookLibraryApp.Models.Pages
                     StreamReader reader = new StreamReader(receiveStream);
 
                     string content = reader.ReadToEnd();
-                    
+
                     //Console.WriteLine(content);
 
                     JsonSerializerOptions options = new JsonSerializerOptions();

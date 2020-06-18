@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
     Layout = "_Layout";
     TempData["ControllerState"] = "Library";
-    TempData["ViewState"] = "Index";
+    TempData["ViewState"] = "Index"; 
 }
 
 <style>
@@ -54,7 +54,7 @@
         }
         else
         {
-            <div class="row justify-content-center">
+            <div class="row justify-content-start ml-2">
                 <br />
                 @foreach (Books b in Model)
                 {
@@ -68,6 +68,10 @@
                              src="@b.ImageUrlS" alt="Book Image"
                              onerror="this.onerror = null; this.src = '~/img/NoPicture.jpg';">
                         <div class="card-body">
+                            @*@{
+                                TempData["BookID"] = b.BookId;
+                                await Html.PartialAsync("libraryBookDate", new BookLibraryContext());
+                            }*@
                             <h5 class="card-title"><b>Title: </b>@b.BookTitle</h5>
                             <p class="card-text"><b>Author: </b>@b.BookAuthor</p>
                         </div>
