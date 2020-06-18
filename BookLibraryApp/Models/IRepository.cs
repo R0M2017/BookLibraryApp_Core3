@@ -12,6 +12,7 @@ namespace BookLibraryApp.Models
         PagedList<Books> GetBooks(QueryOptions options);
         //PagedList<Books> GetLibraryBooks(QueryOptions options, int bookid);
         List<Books> GetTop10Books(Random rand);
+        int GetID();
         Books GetBook(int bookid);
         void AddBook(Books book);
         void UpdateBook(Books book);

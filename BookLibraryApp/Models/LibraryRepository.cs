@@ -13,7 +13,7 @@ namespace BookLibraryApp.Models
         public IEnumerable<Library> Library => _context.Library.ToArray();
         public PagedList<Library> GetLibraries(QueryOptions options, int accountid)
         {
-            return new PagedList<Library>(_context.Library.Where(l => l.AccountId == accountid), options);
+            return new PagedList<Library>(_context, _context.Library.Where(l => l.AccountId == accountid), options);
         }
 
 /*        public PagedList<Library> GetBookLibraries(QueryOptions options)

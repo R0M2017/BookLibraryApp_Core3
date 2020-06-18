@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Linq;
 using System.Threading.Tasks;
 using BookLibraryApp.Models;
+using BookLibraryApp.Models.api;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -43,6 +44,7 @@ namespace BookLibraryApp
                 .UseMySql("Server=MYSQL5016.site4now.net;Database=db_a63190_romanrs;Uid=a63190_romanrs;Pwd=LOTOS123l!"/*"server=localhost;port=3306;user=root;password=LOTOS123l;database=booklibrarydatabase;"*/, 
                 mySqlOptions => mySqlOptions
                     .ServerVersion("8.0.19-mysql")));
+            //services.AddDbContext<BookContext>(options => options.UseInMemoryDatabase("BookList"));
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
