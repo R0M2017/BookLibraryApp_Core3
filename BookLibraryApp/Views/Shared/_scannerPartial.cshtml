@@ -5,7 +5,7 @@
 
 <div class="container-fluid mt-2">
     <div class="row">
-        <div class="col-1">
+        <div class="col-xl-1 col-lg-2 col-md-4 col-sm-6 col-8">
             <label class="col-form-label">ISBN Search</label>
             <select form="pageform" name="options.searchIsbnname"
                     class="form-control" hidden>
@@ -14,16 +14,16 @@
                 </option>
             </select>
         </div>
-        <div class="col-3">
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-8 col-10">
             <input form="pageform" class="form-control" name="options.searchisbnterm" id="options.searchisbn"
                    value="@Model.Options.SearchIsbnTerm" />
         </div>
-        <div class="col-2 text-right">
+        <div class="col-xl-2 col-lg-4 col-md-6 col-sm-8 col-10 text-md-right text-sm-center text-center  m-md-0 m-sm-2 m-2">
             <button form="pageform" class="btn btn-secondary" type="submit">
                 Search ISBN
             </button>
         </div>
-        <div class="col-6">
+        <div class="col-xl-6 col-lg-8 col-md-10 col-sm-12 col-12 text-md-right text-sm-center text-center m-md-0 m-sm-2 m-2">
             <div class="row justify-content-center">
                 <input type="button" id="btn" class="btn btn-secondary mb-2" value="Start/Stop the scanner" />
             </div>

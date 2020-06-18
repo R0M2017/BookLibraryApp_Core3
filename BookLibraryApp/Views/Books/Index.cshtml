@@ -14,18 +14,19 @@
 </style>
 <br />
 <div class="container-fluid">
+    @* Controls row: *@
     <div class="row">
-        <div class="col-2">
-            <div class="row">
-                <div class="col-6">
+        <div class="col-xl-2 col-lg-4 col-md-6 col-sm-12 col-12">
+            @*<div class="row">
+                <div class="col-6">*@
                     <a class="btn btn-secondary" asp-controller="Home" asp-action="Index">< Home</a>
-                </div>
-            </div>
+                @*</div>
+            </div>*@
         </div>
-        <div class="col-6">
+        <div class="col-xl-6 col-lg-8 col-md-10 col-sm-12 col-12">
             @await Html.PartialAsync("_scannerPartial", Model)
         </div>
-        <div class="text-center col-4">
+        <div class="text-center col-xl-4 col-lg-6 col-md-10 col-sm-12 col-12">
             @{
                 ViewBag.searches = new string[] { "BookTitle", "BookAuthor", "Publisher" };
                 ViewBag.sorts = new string[] { "BookTitle", "BookAuthor",
@@ -37,6 +38,7 @@
         <br />
         <hr />
     </div>
+    @* Books View below:  *@
     <div class="row bg-dark m-6 p-6">
         <div>
             <br />

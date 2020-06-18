@@ -1,11 +1,12 @@
-﻿<br /><br />
+﻿<br />
+<br />
 <div class="container-fluid mt-2">
+    @* Search Property Name *@
     <div class="row m-1">
-        <div class="col"></div>
-        <div class="col-1">
+        <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-8 m-sm-2">
             <label class="col-form-label">Search</label>
         </div>
-        <div class="col-3">
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-8 col-10 m-sm-2 m-2">
             <select form="pageform" name="options.searchpropertyname"
                     class="form-control">
                 @foreach (string s in ViewBag.searches as string[])
@@ -16,23 +17,22 @@
                 }
             </select>
         </div>
-        <div class="col">
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-8 col-10 m-sm-2 m-2">
             <input form="pageform" class="form-control" name="options.searchterm"
                    value="@Model.Options.SearchTerm" />
         </div>
-        <div class="col-1 text-right">
+        <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-8 text-right m-sm-2 m-2">
             <button form="pageform" class="btn btn-secondary" type="submit">
                 Search
             </button>
         </div>
-        <div class="col"></div>
     </div>
+    @* Sort by Property name *@
     <div class="row m-1">
-        <div class="col"></div>
-        <div class="col-1">
+        <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-8 m-sm-2">
             <label class="col-form-label">Sort</label>
         </div>
-        <div class="col-3">
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-8 col-10 m-sm-2 m-2">
             <select form="pageform" name="options.OrderPropertyName"
                     class="form-control">
                 @foreach (string s in ViewBag.sorts as string[])
@@ -43,18 +43,17 @@
                 }
             </select>
         </div>
-        <div class="col form-check form-check-inline">
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-8 col-10 m-sm-2 m-2 form-check form-check-inline">
             <input form="pageform" type="checkbox" name="Options.DescendingOrder"
                    id="Options.DescendingOrder"
                    class="form-check-input" value="true"
                    checked="@Model.Options.DescendingOrder" />
             <label class="form-check-label">Descending Order</label>
         </div>
-        <div class="col-1 text-right">
+        <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-8 m-sm-2 m-2 text-right">
             <button form="pageform" class="btn btn-secondary" type="submit">
                 Sort
             </button>
         </div>
-        <div class="col"></div>
     </div>
 </div>
