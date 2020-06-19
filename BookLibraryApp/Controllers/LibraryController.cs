@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using BookLibraryApp.Models;
 using BookLibraryApp.Models.Pages;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualStudio.Web.CodeGeneration.Contracts.Messaging;
 
 namespace BookLibraryApp.Controllers
 {
@@ -43,8 +44,11 @@ namespace BookLibraryApp.Controllers
                 Accounts authenticatedAccount = accountRepository.Accounts.First(u => u.Username == User.Identity.Name);
                 if (libraryRepository.BookLibraryExists(bookid, authenticatedAccount.AccountId))
                 {
+                    TempData["ValidationState"] = "Book Exists in Library";
                     return RedirectToAction(TempData["ViewState"].ToString(), TempData["ControllerState"].ToString());
                 }
+                else
+                    TempData["ValidationState"] = null;
                 int libraryid = libraryRepository.GetID() + 1;
                 if (libraryRepository.Library.Any(l => l.LibraryId == libraryid))
                     libraryid += 1;

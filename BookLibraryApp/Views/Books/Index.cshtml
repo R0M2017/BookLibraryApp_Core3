@@ -19,9 +19,9 @@
         <div class="col-xl-2 col-lg-4 col-md-6 col-sm-12 col-12">
             @*<div class="row">
                 <div class="col-6">*@
-                    <a class="btn btn-secondary" asp-controller="Home" asp-action="Index">< Home</a>
-                @*</div>
-            </div>*@
+            <a class="btn btn-secondary" asp-controller="Home" asp-action="Index">< Home</a>
+            @*</div>
+                </div>*@
         </div>
         <div class="col-xl-6 col-lg-8 col-md-10 col-sm-12 col-12">
             @await Html.PartialAsync("_scannerPartial", Model)
@@ -38,6 +38,26 @@
         <br />
         <hr />
     </div>
+    @*<div class='eventDay @(e.Value.Count<1?"noEvents":"")'>*@
+    @*@if (TempData["ValidationState"].ToString() != "")
+    {*@
+        <div id="alert" class="alert alert-danger alert-dismissible fade @(TempData["ValidationState"] != null ? "show" : "hide")" runat="server" role="alert">
+            <strong>@TempData["ValidationState"]</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @*}*@
+    @*<script>
+            var alert = document.getElementById("alert");
+            if (@TempData["ValidationState"] == null) {
+                alert.classList.remove('hide');
+                alert.classList.add('show');
+            } else {
+                alert.classList.remove('show');
+                alert.classList.add('hide');
+            }
+        </script>*@
     @* Books View below:  *@
     <div class="row bg-dark m-6 p-6">
         <div>
@@ -46,8 +66,8 @@
             @if (ViewBag.UpdateAll != true)
             {
                 @*<div class="text-center">
-                    <a asp-action="UpdateAll" class="btn btn-primary">Edit All</a>
-                </div>*@
+                        <a asp-action="UpdateAll" class="btn btn-primary">Edit All</a>
+                    </div>*@
                 @if (Model.Count() == 0)
                 {
                     <div class="row placeholder justify-content-center">
@@ -59,36 +79,36 @@
                     <div class="row mb-2 pb-2 justify-content-center">
                         <br />
                         @*<form asp-action="AddBook" method="post">
-                            <div class="card m-2 cardSize">
-                                <div class="card-img-top cardImg>
-                                    Small Image<input name="ImageUrlS" class="form-control" />
-                                    Medium Image<input name="ImageUrlM" class="form-control" />
-                                    Large Image<input name="ImageUrlL" class="form-control" />
+                                <div class="card m-2 cardSize">
+                                    <div class="card-img-top cardImg>
+                                        Small Image<input name="ImageUrlS" class="form-control" />
+                                        Medium Image<input name="ImageUrlM" class="form-control" />
+                                        Large Image<input name="ImageUrlL" class="form-control" />
+                                    </div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">
+                                            <b>Title: </b><input name="BookTitle" class="form-control" />
+                                        </h5>
+                                        <p class="card-text">
+                                            <b>Author: </b><input name="BookAuthor" class="form-control" />
+                                        </p>
+                                    </div>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">
+                                            <b>Publisher: </b><input name="Publisher" class="form-control" />
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b>Year Published: </b><input name="YearOfPublication" class="form-control" />
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b>ISBN: </b><input name="Isbn" class="form-control" />
+                                        </li>
+                                        <li class="list-group-item">
+                                            <button type="submit" class="btn btn-primary">Add</button>
+                                        </li>
+                                    </ul>
                                 </div>
-                                <div class="card-body">
-                                    <h5 class="card-title">
-                                        <b>Title: </b><input name="BookTitle" class="form-control" />
-                                    </h5>
-                                    <p class="card-text">
-                                        <b>Author: </b><input name="BookAuthor" class="form-control" />
-                                    </p>
-                                </div>
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">
-                                        <b>Publisher: </b><input name="Publisher" class="form-control" />
-                                    </li>
-                                    <li class="list-group-item">
-                                        <b>Year Published: </b><input name="YearOfPublication" class="form-control" />
-                                    </li>
-                                    <li class="list-group-item">
-                                        <b>ISBN: </b><input name="Isbn" class="form-control" />
-                                    </li>
-                                    <li class="list-group-item">
-                                        <button type="submit" class="btn btn-primary">Add</button>
-                                    </li>
-                                </ul>
-                            </div>
-                        </form>*@
+                            </form>*@
                         @foreach (Books b in Model)
                         {
                             <br />

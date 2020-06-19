@@ -1,4 +1,5 @@
-﻿using BookLibraryApp.Models.Pages;
+﻿using BookLibraryApp.Controllers;
+using BookLibraryApp.Models.Pages;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,6 @@ namespace BookLibraryApp.Models
 {
     public class LibraryRepository : ILibraryRepository
     {
-
         private BookLibraryContext _context;
         public LibraryRepository(BookLibraryContext context) => _context = context;
         public IEnumerable<Library> Library => _context.Library.ToArray();

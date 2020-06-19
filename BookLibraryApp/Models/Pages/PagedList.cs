@@ -7,6 +7,8 @@ using System.Linq.Expressions;
 using System.Net;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using BookLibraryApp.Controllers;
 
 namespace BookLibraryApp.Models.Pages
 {
@@ -55,6 +57,7 @@ namespace BookLibraryApp.Models.Pages
             var lambda = Expression.Lambda<Func<T, bool>>(body, parameter);
             if (!query.Any(lambda))
             {
+
                 if (_context.Books.Any(b => b.Isbn == searchisbnTerm))
                     return query.Where(lambda);
                 int bookID = _context.Books.ToArray().Length + 1;
@@ -64,6 +67,8 @@ namespace BookLibraryApp.Models.Pages
                 bookDetails bookInfo = bookModel.Book;
                 if (bookInfo != null)
                 {
+                    // controller.AlertBooks("ValidationState", "null", null, null);
+                    // libraryControllerAccess.AlertBooks("ValidationState", "null", null, null);
                     _context.Books.Add(new Books
                     {
                         /*BookId = bookID,*/
