@@ -14,27 +14,27 @@
                 <h1>RegisterVertification</h1>
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
-                    <label class="control-label">@Html.DisplayNameFor(model => model.Username)</label>
+                    <label asp-for="Username" class="control-label"></label>
                     <input class="form-control" asp-for="Username" value="@Model.Username" readonly />
                 </div>
                 <div class="form-group">
-                    <label class="control-label">@Html.DisplayNameFor(model => model.Email)</label>
+                    <label asp-for="Email" class="control-label"></label>
                     <input class="form-control" asp-for="Email" value="@Model.Email" readonly />
                 </div>
                 <div class="form-group">
-                    <label class="control-label">@Html.DisplayNameFor(model => model.Phonenumber)</label>
+                    <label asp-for="Phonenumber" class="control-label">Phone Number</label>
                     <input class="form-control" asp-for="Phonenumber" value="@Model.Phonenumber" readonly />
                 </div>
                 <div class="form-group">
-                    <label class="control-label">@Html.DisplayNameFor(model => model.Firstname)</label>
+                    <label asp-for="Firstname" class="control-label">First Name</label>
                     <input class="form-control" asp-for="Firstname" value="@Model.Firstname" readonly />
                 </div>
                 <div class="form-group">
-                    <label class="control-label">@Html.DisplayNameFor(model => model.Lastname)</label>
+                    <label asp-for="Lastname" class="control-label">Last Name</label>
                     <input class="form-control" asp-for="Lastname" value="@Model.Lastname" readonly />
                 </div>
                 <div class="form-group">
-                    <label class="control-label">@Html.DisplayNameFor(model => model.Dateofbirth)</label>
+                    <label asp-for="Dateofbirth" class="control-label">Date Of Birth</label>
                     <input type="text" class="form-control" asp-for="Dateofbirth" value="@Model.Dateofbirth" readonly />
                 </div>
                 <div class="form-group">

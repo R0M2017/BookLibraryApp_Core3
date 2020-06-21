@@ -3,6 +3,28 @@
         width: 16rem;
         height: 50rem;
     }
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        height: 100px;
+        width: 100px;
+        outline: black;
+        background-size: 100%, 100%;
+        border-radius: 50%;
+        border: 1px solid black;
+        background-image: none;
+    }
+
+        .carousel-control-next-icon:after {
+            content: '>';
+            font-size: 55px;
+            color: red;
+        }
+
+        .carousel-control-prev-icon:after {
+            content: '<';
+            font-size: 55px;
+            color: red;
+        }
 </style>
 
 <div class="rounded bg-dark p-2">
@@ -137,6 +159,16 @@
                     }
                 </div>
             </div>
+
+            <a class="carousel-control-prev p-2" href="#bookCarousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next p-2" href="#bookCarousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+
         </div>
     </div>
 </div>
