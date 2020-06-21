@@ -1,2 +1,0 @@
-﻿@model BookLibraryContext
-<h5 class="card-title"><b>Title: </b>@Model.Library.First(l => l.BookId == Convert.ToInt32(TempData["BookID"])).Datecreated</h5>
